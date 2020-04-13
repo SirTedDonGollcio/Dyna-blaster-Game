@@ -17,17 +17,28 @@ import GUI.ImageLoader;
 
 public class MenuC {
     public MenuC(){
-        JFrame f = new JFrame("Bombowa Frajda");
+        final int FRAME_WIDTH = 700;
+        final int FRAME_HEIGHT = 500;
+        final int B_WIDTH =200;
+        final int B_HIGH =50;
+        final int B_X =250;
+        final int B1_Y =225;
+        final int B2_Y =280;
+        final int B3_Y =335;
+        final int B4_Y =390;
+        		
+    	
+    	JFrame f = new JFrame("Bombowa Frajda");
         Button b1 = new Button("Rozpocznij Gre");
         Button b2 = new Button("Najlepsze Wyniki");
         Button b3 = new Button("Sterowanie");
         Button b4 = new Button("Wyjscie");
         ImageLoader il = new ImageLoader();
         
-        b1.setBounds(250, 225, 200, 50);
-        b2.setBounds(250, 280, 200, 50);
-        b3.setBounds(250, 335, 200, 50);
-        b4.setBounds(250, 390, 200, 50);
+        b1.setBounds(B_X, B1_Y, B_WIDTH, B_HIGH);
+        b2.setBounds(B_X, B2_Y, B_WIDTH, B_HIGH);
+        b3.setBounds(B_X, B3_Y, B_WIDTH, B_HIGH);
+        b4.setBounds(B_X, B4_Y, B_WIDTH, B_HIGH);
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GraC f1 = new GraC();
@@ -53,13 +64,11 @@ public class MenuC {
         });
         
         
-        
-        ImageIcon imageIcon = new 		
-        ImageIcon(il.imageL("Images/title.jpg"));
-        f.setSize(700,500);
+        BufferedImage image = il.imageL("Images/title.jpg");
+        ImageIcon imageIcon = new ImageIcon(image);
+        f.setSize(FRAME_WIDTH,FRAME_HEIGHT);
         JLabel jLabel = new JLabel();
         jLabel.setIcon(imageIcon);
-        jLabel.setBounds(200, 0,300,300);
         f.add(jLabel);
         f.setContentPane(jLabel);
         f.pack();
@@ -67,6 +76,7 @@ public class MenuC {
         f.add(b2); 
         f.add(b3); 
         f.add(b4); 
+        
         
         
         //f.setLayout(null);
@@ -77,6 +87,24 @@ public class MenuC {
             }
         });
         f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        
+        f.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent componentEvent) {
+                int nWidth = f.getWidth();
+                int nHeight = f.getHeight();
+                float yScale = (float)nHeight/(float)FRAME_HEIGHT;
+                float xScale = (float)nWidth/(float)FRAME_WIDTH;
+                
+                ImageIcon imageIcon = new ImageIcon(il.scaleI(image,(int)(700*xScale),(int)(500*yScale)));
+                jLabel.setIcon(imageIcon);
+                f.setContentPane(jLabel);
+                b1.setBounds((int)(B_X*xScale), (int)(B1_Y*yScale), (int)(B_WIDTH*xScale), (int)(B_HIGH*yScale));
+                b2.setBounds((int)(B_X*xScale), (int)(B2_Y*yScale), (int)(B_WIDTH*xScale), (int)(B_HIGH*yScale));
+                b3.setBounds((int)(B_X*xScale), (int)(B3_Y*yScale), (int)(B_WIDTH*xScale), (int)(B_HIGH*yScale));
+                b4.setBounds((int)(B_X*xScale), (int)(B4_Y*yScale), (int)(B_WIDTH*xScale), (int)(B_HIGH*yScale));
+            
+            }
+        });
         
         f.setVisible(true);
         
