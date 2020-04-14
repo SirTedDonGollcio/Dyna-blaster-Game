@@ -10,12 +10,25 @@ import java.awt.event.*;
 
 public class WynikiC {
     public WynikiC(){
+    	final int FRAME_WIDTH = 700;
+        final int FRAME_HEIGHT = 500;
+        final int FONT_SIZE = 33;
+        final int FONTS_SIZE = 12;
+        final int T_X = 140;
+        final int T_Y = 50;
+        final int T_WIDTH = 700;
+        final int T_HEIGHT = 40;
+        final int SCROLL_X = 145;
+        final int SCROLL_Y = 180;
+        final int SCROLL_WIDTH = 400;
+        final int SCROLL_HEIGHT = 200;
+    	
         JFrame f = new JFrame("Tablica Rankingowa");
         
         Label l = new Label("Tablica najlepszych wyników");
-        l.setFont(new Font("Lucida",Font.PLAIN,33));
+        l.setFont(new Font("Lucida",Font.PLAIN,FONT_SIZE));
         
-        l.setBounds(140, -50, 600, 200);
+        l.setBounds(T_X, T_Y, T_WIDTH, T_HEIGHT);
         //l.setLocation(0, 0);
         f.add(l);
         
@@ -31,11 +44,12 @@ public class WynikiC {
         JTable t = new JTable(data, kolumny);
         
         JScrollPane scroll = new JScrollPane(t);
-        scroll.setBounds(145, 180, 400, 200);
+        scroll.setBounds(SCROLL_X, SCROLL_Y, SCROLL_WIDTH, SCROLL_HEIGHT);
+        scroll.setFont(new Font("Lucida",Font.PLAIN,FONTS_SIZE));
         f.add(scroll);
         
         
-        f.setSize(700, 500);
+        f.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         f.setLayout(null);
         f.setLocationRelativeTo(null);
         f.setVisible(true);
@@ -43,6 +57,20 @@ public class WynikiC {
             public void windowClosing(WindowEvent we) {
                 f.dispose();
                 MenuC f1 = new MenuC();
+            }
+        });
+        
+        f.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent componentEvent) {
+                int nWidth = f.getWidth();
+                int nHeight = f.getHeight();
+                float yScale = (float)nHeight/(float)FRAME_HEIGHT;
+                float xScale = (float)nWidth/(float)FRAME_WIDTH;
+                
+                l.setFont(new Font("Lucida",Font.PLAIN,(int)(FONT_SIZE*xScale)));
+                l.setBounds((int)(T_X*xScale), (int)(T_Y*yScale), (int)(T_WIDTH*xScale), (int)(T_HEIGHT*yScale));
+                scroll.setBounds((int)(SCROLL_X*xScale), (int)(SCROLL_Y*yScale), (int)(SCROLL_WIDTH*xScale), (int)(SCROLL_HEIGHT*yScale));
+                scroll.setFont(new Font("Lucida",Font.PLAIN,(int)(FONTS_SIZE*xScale)));
             }
         });
     }
