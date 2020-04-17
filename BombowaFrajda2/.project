@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/Game</name>
+			<type>2</type>
+			<location>C:/Users/Ted/proze20l_frajda_golczyk/BombowaFrajda2/src/Game</location>
+		</link>
+	</linkedResources>
 </projectDescription>
