@@ -11,14 +11,16 @@ import GUI.ImageLoader;
 
 import java.awt.event.*;
 
-public abstract class ObjectCreator {
-	public JLabel l = new JLabel();
-	public BufferedImage i;
-	public ImageIcon ii = new ImageIcon();
-	public ImageLoader il = new ImageLoader();
-	
-	public JLabel getLabel()
+public class ObjectCreator {
+	public JLabel wallCreator(int x, int y)
 	{
+		JLabel l = new JLabel();
+		ImageLoader il = new ImageLoader();
+		BufferedImage i = il.imageL("Images/wall.png");
+        ImageIcon ii = new ImageIcon(i);
+        l.setIcon(ii);
+        l.setBounds(x*55,y*55,55,55);
+		
 		return l;
 	}
 }

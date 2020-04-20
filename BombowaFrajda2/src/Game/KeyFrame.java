@@ -17,6 +17,7 @@ import Game.Bomber;
 public class KeyFrame extends JFrame implements KeyListener{
 	
 	public Bomber player;
+	public int direction = 4;
 	
 	public KeyFrame(String s)
 	{
@@ -28,38 +29,45 @@ public class KeyFrame extends JFrame implements KeyListener{
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_A) {
         	
         	player.l.setBounds(player.posX -player.speedX ,player.posY,player.l.getWidth(),player.l.getHeight());
         	player.posX = player.posX -player.speedX;
+        	direction = 1;
         	
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_D) {
         	player.l.setBounds(player.posX + player.speedX,player.posY,player.l.getWidth(),player.l.getHeight());
         	player.posX = player.posX + player.speedX;
+        	direction = 2;
+
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_W) {
         	player.l.setBounds(player.posX ,player.posY-player.speedY,player.l.getWidth(),player.l.getHeight());
         	player.posY = player.posY - player.speedY;
+        	direction = 3;
+
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_S) {
         	player.l.setBounds(player.posX,player.posY+ player.speedY,player.l.getWidth(),player.l.getHeight());
         	player.posY = player.posY + player.speedY;
+        	direction = 4;
+
         }
     }
 	@Override
     public void keyReleased(KeyEvent e) {
 
-        System.out.print("Puszczono cos");
+        //System.out.print("Puszczono cos");
         
     }
 	@Override
     public void keyTyped(KeyEvent e) {
 
-        System.out.print("Wpisano cos");
+        //System.out.print("Wpisano cos");
 
     }
 
