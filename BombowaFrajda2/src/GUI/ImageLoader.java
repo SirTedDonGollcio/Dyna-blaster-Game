@@ -44,7 +44,7 @@ public class ImageLoader {
 		    return image;
 	}
 	
-	public BufferedImage scaleI(BufferedImage srcImg, int w, int h){
+	public Image scaleI(BufferedImage srcImg, int w, int h){
 	    BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 	    Graphics2D g2 = resizedImg.createGraphics();
 

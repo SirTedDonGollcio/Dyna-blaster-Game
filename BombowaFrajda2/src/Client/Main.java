@@ -15,7 +15,6 @@ import GUI.MenuC;
 public class Main {
     public static void main(String[] args){
         MenuC guiWindow = new MenuC();
-        (guiWindow.kicker = new Thread(guiWindow)).start();
     }
 
 }
