@@ -23,14 +23,12 @@ public class Bomber extends ObjectCreator{
 	public int speedY;
 	public BufferedImage front = il.imageL("Images/bomber_front.png");
 	public BufferedImage back = il.imageL("Images/bomber_back.png");
-	public BufferedImage left = il.imageL("Images/bomber_left.png");
 	public BufferedImage right = il.imageL("Images/bomber_right.png");
+	public BufferedImage left = il.imageL("Images/bomber_left.png");
 	public BufferedImage frontS = front;
 	public BufferedImage backS = back;
-	public BufferedImage leftS = left;
 	public BufferedImage rightS = right;
-	public int direction=4;
-			
+	public BufferedImage leftS = left;
 	
 	public Bomber(int x, int y) {
 		
@@ -41,7 +39,7 @@ public class Bomber extends ObjectCreator{
 		speedY=3;
 		
 		
-		i = front;
+		i = frontS;
 		ii = new ImageIcon(i);
 		l.setIcon(ii);
 	    l.setBounds(posX,posY,55,55);	    
