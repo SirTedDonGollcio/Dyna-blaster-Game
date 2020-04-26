@@ -11,9 +11,10 @@ import Game.ObjectCreator;
 
 public class Wall extends ObjectCreator{
 	
-	
 	public Wall(int x, int y) {
 	
+	posX=x*55;
+	posY=y*55;
 	i = il.imageL("Images/wall.png");
 	ii = new ImageIcon(i);
 	l.setIcon(ii);

@@ -20,6 +20,7 @@ import GUI.ImageLoader;
 
 
 
+
 public class MenuC implements Runnable{
     
 	private JFrame f = new JFrame("Bombowa Frajda");

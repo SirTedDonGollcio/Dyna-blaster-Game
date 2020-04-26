@@ -10,8 +10,11 @@ import javax.swing.*;
 import Game.ObjectCreator;
 
 public class FragileWall extends ObjectCreator{
+	
 	public FragileWall(int x, int y) {
 		
+		posX=x*55;
+		posY=y*55;
 		i = il.imageL("Images/rock1.png");
 		ii = new ImageIcon(i);
 		l.setIcon(ii);

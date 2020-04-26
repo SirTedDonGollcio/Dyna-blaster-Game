@@ -15,12 +15,12 @@ import Game.ObjectCreator;
 
 public class Bomber extends ObjectCreator{
 	
-	public int posX;
-	public int posY;
+	
 	public int lX;
 	public int lY;
 	public int speedX;
 	public int speedY;
+	public int direction;
 	public BufferedImage front = il.imageL("Images/bomber_front.png");
 	public BufferedImage back = il.imageL("Images/bomber_back.png");
 	public BufferedImage right = il.imageL("Images/bomber_right.png");
@@ -38,7 +38,7 @@ public class Bomber extends ObjectCreator{
 		speedX=3;
 		speedY=3;
 		
-		
+		direction=1;
 		i = frontS;
 		ii = new ImageIcon(i);
 		l.setIcon(ii);

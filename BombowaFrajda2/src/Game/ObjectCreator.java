@@ -12,15 +12,17 @@ import GUI.ImageLoader;
 import java.awt.event.*;
 
 public class ObjectCreator {
-	public JLabel wallCreator(int x, int y)
+	public JLabel l = new JLabel();
+	public ImageLoader il = new ImageLoader();
+	public BufferedImage i;
+	public ImageIcon ii;
+	public int sizeX=55;
+	public int sizeY=55;
+	public int posX;
+	public int posY;
+	
+	public JLabel getLabel()
 	{
-		JLabel l = new JLabel();
-		ImageLoader il = new ImageLoader();
-		BufferedImage i = il.imageL("Images/wall.png");
-        ImageIcon ii = new ImageIcon(i);
-        l.setIcon(ii);
-        l.setBounds(x*55,y*55,55,55);
-		
 		return l;
 	}
 }

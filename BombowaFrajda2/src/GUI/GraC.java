@@ -13,6 +13,7 @@ import Game.Wall;
 import Game.Bomber;
 import Game.FragileWall;
 import Game.KeyFrame;
+import Game.Spider;
 
 public class GraC implements Runnable{
     
@@ -60,6 +61,11 @@ public class GraC implements Runnable{
     				{2,10},{3,10},{4,10},{9,10},{10,10},};
     FragileWall fragWalls[] = new FragileWall[iloscFragscian];
     
+    int iloscPajakow = 5;
+    //int[][] dane = new int[iloscPajakow][2];
+    int[][] daneP = {{5,0},{7,2},{2,4},{5,6},{5,10}};
+    Spider spiders[] = new Spider[iloscPajakow];
+    
     Bomber bomber = new Bomber(0,0);
     
     Thread kicker = null;
@@ -102,7 +108,12 @@ public class GraC implements Runnable{
         	fragWalls[iter] = fragileWall;
         	game.add(fragWalls[iter].getLabel());
         }
-        
+        for(int iter = 0;iter<iloscPajakow;iter++)
+        {
+        	Spider spider = new Spider(daneP[iter][0],daneP[iter][1]);
+        	spiders[iter] = spider;
+        	game.add(spiders[iter].getLabel());
+        }
         
         game.add(bomber.getLabel());
         f.player = bomber;
@@ -152,6 +163,10 @@ public class GraC implements Runnable{
         	ImageIcon imageIcon = new ImageIcon(il.scaleI(walls[iter].i,(int)(OBJ_DIM*xScale),(int)(OBJ_DIM*yScale)));
         	walls[iter].getLabel().setIcon(imageIcon);
         	walls[iter].getLabel().setBounds((int)(daneW[iter][0]*OBJ_DIM*xScale),(int)(daneW[iter][1]*OBJ_DIM*yScale),(int)(OBJ_DIM*xScale),(int)( OBJ_DIM*yScale));
+        	walls[iter].posX = (int)(daneW[iter][0]*OBJ_DIM*xScale);
+        	walls[iter].posY = (int)(daneW[iter][1]*OBJ_DIM*yScale);
+        	walls[iter].sizeX = (int)(OBJ_DIM*xScale);
+        	walls[iter].sizeY = (int)(OBJ_DIM*yScale);
         }
         for(int iter = 0; iter <iloscFragscian;iter++)
         {
@@ -159,6 +174,21 @@ public class GraC implements Runnable{
         	ImageIcon imageIcon = new ImageIcon(il.scaleI(fragWalls[iter].i,(int)(OBJ_DIM*xScale),(int)(OBJ_DIM*yScale)));
         	fragWalls[iter].getLabel().setIcon(imageIcon);
         	fragWalls[iter].getLabel().setBounds((int)(daneF[iter][0]*OBJ_DIM*xScale),(int)(daneF[iter][1]*OBJ_DIM*yScale),(int)(OBJ_DIM*xScale),(int)( OBJ_DIM*yScale));
+        	fragWalls[iter].posX = (int)(daneF[iter][0]*OBJ_DIM*xScale);
+        	fragWalls[iter].posY = (int)(daneF[iter][1]*OBJ_DIM*yScale);
+        	fragWalls[iter].sizeX = (int)(OBJ_DIM*xScale);
+        	fragWalls[iter].sizeY = (int)(OBJ_DIM*yScale);
+        }
+        for(int iter = 0; iter <iloscPajakow;iter++)
+        {
+        	
+        	ImageIcon imageIcon = new ImageIcon(il.scaleI(spiders[iter].i,(int)(OBJ_DIM*xScale),(int)(OBJ_DIM*yScale)));
+        	spiders[iter].getLabel().setIcon(imageIcon);
+        	spiders[iter].getLabel().setBounds((int)(daneP[iter][0]*OBJ_DIM*xScale),(int)(daneP[iter][1]*OBJ_DIM*yScale),(int)(OBJ_DIM*xScale),(int)( OBJ_DIM*yScale));
+        	spiders[iter].posX = (int)(daneP[iter][0]*OBJ_DIM*xScale);
+        	spiders[iter].posY = (int)(daneP[iter][1]*OBJ_DIM*yScale);
+        	spiders[iter].sizeX = (int)(OBJ_DIM*xScale);
+        	spiders[iter].sizeY = (int)(OBJ_DIM*yScale);
         }
         bomber.frontS=il.scaleI(bomber.front, (int)(OBJ_DIM*xScale),(int)(OBJ_DIM*yScale));
         bomber.backS=il.scaleI(bomber.back, (int)(OBJ_DIM*xScale),(int)(OBJ_DIM*yScale));
@@ -212,6 +242,9 @@ public class GraC implements Runnable{
     		
     		bomber.ii = new ImageIcon(bomber.i);
     		bomber.l.setIcon(bomber.ii); 
+    		bomber.l.setOpaque(true);
+            bomber.l.setBackground(new Color(64, 62, 60));
+    		boolean b = isColidingDown();
     		sleeep();
         }
     }
@@ -219,4 +252,18 @@ public class GraC implements Runnable{
 	public void setKicker(Thread kicker) {
         this.kicker = kicker;
     }
+	
+	public boolean isColidingDown()
+	{
+		boolean b=false;
+		for(int iter=0;iter<iloscScian;iter++)
+		{
+			if(((walls[iter].posY - (bomber.posY+bomber.sizeY) <= 0)&&(walls[iter].posY - (bomber.posY+bomber.sizeY) >= -8*bomber.sizeY/55))&&((((walls[iter].posX+walls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))>0)&&((walls[iter].posX+walls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))<walls[iter].sizeX))||(((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-walls[iter].posX>0)&&((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-walls[iter].posX<walls[iter].sizeX))))
+			{
+				b=true;
+				System.out.print("Koliduje na dole od bomber\n");
+			}
+		}
+		return b;
+	}
 }

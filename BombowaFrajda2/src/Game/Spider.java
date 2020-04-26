@@ -9,11 +9,14 @@ import javax.swing.*;
 
 import Game.ObjectCreator;
 
-public class Monster  extends ObjectCreator{
+public class Spider  extends ObjectCreator{
 	
-	public Monster(int x, int y) {
+	
+	public Spider(int x, int y) {
 		
-		i = il.imageL("Images/bomb.png");
+		posX=x*55;
+		posY=y*55;
+		i = il.imageL("Images/spider.png");
 		ii = new ImageIcon(i);
 		l.setIcon(ii);
 	    l.setBounds(x*55,y*55,55,55);
