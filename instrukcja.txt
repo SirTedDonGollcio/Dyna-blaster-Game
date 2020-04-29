@@ -1,0 +1,2 @@
+Po pobraniu repozytorium program można uruchomić za pomocą skryptu BF.bat(dwuklikiem),
+lub jeśli nie zadziała, w folderze BombowaFrajda2 znajduje się plik BF.jar, który można uruchomić z konsoli
