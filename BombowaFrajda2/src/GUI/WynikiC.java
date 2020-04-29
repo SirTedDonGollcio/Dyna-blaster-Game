@@ -45,6 +45,7 @@ public class WynikiC implements Runnable{
         scoreList.addToList(new ScorePerson(3, "Zorro", 20, "1:43:00", 3));
         Object[][] data = new Object[3][5];*/
 		
+		
 		ScoreList scoreList = fo.readScore();
 		Object[][] data = new Object[scoreList.howMany][5];
 		
@@ -57,6 +58,9 @@ public class WynikiC implements Runnable{
         	data[iter][4] = scoreList.scorePeople[iter].stage;
         }
         
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
         t = new JTable(data, kolumny);
         
         scroll = new JScrollPane(t);
@@ -90,6 +94,8 @@ public class WynikiC implements Runnable{
             public void componentResized(ComponentEvent componentEvent) {
             	updateOffscreenSize();
             }
+        });
+            };
         });
     }
     

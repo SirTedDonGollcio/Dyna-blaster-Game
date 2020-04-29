@@ -20,6 +20,8 @@ public class ObjectCreator {
 	public int sizeY=55;
 	public int posX;
 	public int posY;
+	public int tempX;
+	public int tempY;
 	
 	public JLabel getLabel()
 	{

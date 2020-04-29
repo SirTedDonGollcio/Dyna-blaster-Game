@@ -8,24 +8,29 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.awt.event.*;
 import GUI.ImageLoader;
+import Game.Bomber;
 
-public class HealthBar extends JLabel{
-	public int iloscZycia = 5;
+public class HealthBar extends JLabel implements Runnable{
+	public Bomber bomber;
+	public Thread kicker = null;
+	JLabel h1 = new JLabel();
+    JLabel h2 = new JLabel();
+    JLabel h3 = new JLabel();
+    JLabel h4 = new JLabel();
+    JLabel h5 = new JLabel();
+    JLabel hb = new JLabel();
+	ImageLoader il = new ImageLoader();
+    
 	public boolean alive = true;
-	JLabel healthBar() {
-		JLabel hb = new JLabel();
-		ImageLoader il = new ImageLoader();
+	JLabel healthBar(Bomber bomber) {
+		this.bomber = bomber;
 		
+		SwingUtilities.invokeLater(new Runnable() {
+	        @Override
+	        public void run() {
 		BufferedImage ib1 = il.imageL("Images/heart.png");
         ImageIcon i1 = new ImageIcon(ib1);
-        
         hb.setBounds(20, 20, 335, 55);
-        JLabel h1 = new JLabel();
-        JLabel h2 = new JLabel();
-        JLabel h3 = new JLabel();
-        JLabel h4 = new JLabel();
-        JLabel h5 = new JLabel();
-        
         h1.setBounds(10,0,55,55);
         h2.setBounds(75,0,55,55);
         h3.setBounds(140,0,55,55);
@@ -41,36 +46,59 @@ public class HealthBar extends JLabel{
         hb.add(h3);
         hb.add(h4);
         hb.add(h5);
+        check();
         
-        if(iloscZycia == 5) {
+		
+	        };
+		});
+		return hb;
+	}
+	
+	private void sleeep() {
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException ie) {
+        	//System.out.println("przrwanie sleep");
+        }
+    }
+	
+	public void run() {
+    	while (kicker == Thread.currentThread()) {
+    		sleeep();
+    		check();
+        }
+    }
+	public void check()
+	{
+		if(bomber.iloscZycia == 5) {
         	h1.setVisible(true);
         	h2.setVisible(true);
         	h3.setVisible(true);
         	h4.setVisible(true);
         	h5.setVisible(true);
         }
-        else if(iloscZycia == 4) {
+        else if(bomber.iloscZycia == 4) {
         	h1.setVisible(true);
         	h2.setVisible(true);
         	h3.setVisible(true);
         	h4.setVisible(true);
         	h5.setVisible(false);
         }
-        else if(iloscZycia == 3) {
+        else if(bomber.iloscZycia == 3) {
         	h1.setVisible(true);
         	h2.setVisible(true);
         	h3.setVisible(true);
         	h4.setVisible(false);
         	h5.setVisible(false);
         }
-        else if(iloscZycia == 2) {
+        else if(bomber.iloscZycia == 2) {
         	h1.setVisible(true);
         	h2.setVisible(true);
         	h3.setVisible(false);
         	h4.setVisible(false);
         	h5.setVisible(false);
         }
-        else if(iloscZycia == 1) {
+        else if(bomber.iloscZycia == 1) {
         	h1.setVisible(true);
         	h2.setVisible(false);
         	h3.setVisible(false);
@@ -85,10 +113,5 @@ public class HealthBar extends JLabel{
         	h5.setVisible(false);
         	alive = false;
         }
-		
-		
-		return hb;
-		
 	}
-	
 }

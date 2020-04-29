@@ -106,7 +106,9 @@ public class SterowanieC implements Runnable{
 	
 	public SterowanieC(){
     	
-        
+        SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
         f.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         f.setLayout(null);
         f.setLocationRelativeTo(null);
@@ -181,6 +183,8 @@ public class SterowanieC implements Runnable{
             public void componentResized(ComponentEvent componentEvent) {
             	updateOffscreenSize();
             }
+        });
+        };
         });
     }
     

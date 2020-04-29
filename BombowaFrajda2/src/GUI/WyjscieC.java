@@ -39,8 +39,9 @@ public class WyjscieC implements Runnable{
 	public WyjscieC(Frame fx,Thread tempKick){
     	
         
-        
-        
+        SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
         l.setBounds(T_X, T_Y, T_WIDTH, T_HEIGHT);
         
         b1.setBounds(B1_X, B_Y, B_WIDTH, B_HEIGHT);
@@ -83,6 +84,8 @@ public class WyjscieC implements Runnable{
             public void componentResized(ComponentEvent componentEvent) {
             	updateOffscreenSize();
             }
+        });
+        };
         });
     }
     

@@ -19,6 +19,7 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
 	public int direction = 4;
 	public Thread ruch = null;
 	public int ruchFlag;
+	public JLabel game;
 	public KeyFrame(String s)
 	{
 		super(s);
@@ -34,7 +35,8 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
         	
         	player.direction = 1;
         	direction = 1;
-        	ruchFlag=1;        }
+        	ruchFlag=1;
+        }
 
         if (key == KeyEvent.VK_D) {
         	
@@ -48,6 +50,7 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
         	player.direction = 3;
         	direction = 3;
         	ruchFlag=1;
+        	
 
         }
 
@@ -57,6 +60,22 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
         	direction = 4;
         	ruchFlag=1;
 
+        }
+        if (key == KeyEvent.VK_SPACE) {
+        	
+        	if(player.currentBombs<player.iloscBomb)
+        	{
+        	Bomb bomb = new Bomb(player.posX,player.posY,player,game);
+        	SwingUtilities.invokeLater(new Runnable() {
+    	        @Override
+    	        public void run() {
+        	game.add(bomb.l);
+    	        };
+        	});
+        	(bomb.kicker= new Thread(bomb)).start();
+        	player.bombs[player.currentBombs] = bomb;
+        	player.currentBombs++;
+        	}
         }
     }
 	@Override
@@ -113,22 +132,22 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
 	{
 		if(ruchFlag == 1)
     	{
-    		if(direction == 1)
+    		if(direction == 1&&!player.isColL)
 	    	{
     			
     	        moveLeft();
 	    	}
-	    	else if(direction == 2)
+	    	else if(direction == 2&&!player.isColR)
 	    	{
 	    		
 	    		moveRight();
 	    	}
-	    	else if(direction == 3)
+	    	else if(direction == 3&&!player.isColU)
 	    	{
 	    		
 	    		moveUp();
 	    	}
-	    	else if(direction == 4)
+	    	else if(direction == 4&&!player.isColD)
 	    	{
 	    		
 	    		moveDown();

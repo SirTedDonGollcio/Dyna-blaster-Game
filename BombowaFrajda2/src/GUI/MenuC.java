@@ -53,7 +53,9 @@ public class MenuC implements Runnable{
     private int flag=0;
     
 	public MenuC(){
-		
+		SwingUtilities.invokeLater(new Runnable() {
+		@Override
+		public void run() {
 		images[0] = il.imageL("Images/title.jpg");
 		imagesS[0]=images[0];
 		
@@ -81,6 +83,7 @@ public class MenuC implements Runnable{
                 GraC f1 = new GraC();
                 f.dispose();
                 kicker = null;
+                sleeep();
                 (f1.kicker = new Thread(f1)).start();
             }
         });
@@ -138,7 +141,8 @@ public class MenuC implements Runnable{
         
         EventQueue.invokeLater(() -> f.setVisible(true)); 
         
-        
+		};
+		});
     }
 	
 	void updateOffscreenSize() {
@@ -191,8 +195,8 @@ public class MenuC implements Runnable{
 	
 	public void run() {
     	while (kicker == Thread.currentThread()) {
-    		updateOffScreen();
     		sleeep();
+    		updateOffScreen();
     		if(flag==1) {sleeeep();};
         }
     }
