@@ -13,26 +13,31 @@ public class Timer implements Runnable{
 	
 	public void wlacz() {
 		flag=1;
+		startuj=true;
 	}
 	public void wylacz()
 	{
 		flag=0;
+		startuj=false;
 	}
 	public void run()
 	{
 		while (kicker == Thread.currentThread()) {
 			if(startuj)
 			{
-				wlacz();
 				startuj=false;
 				try {
 		            Thread.sleep(duration);
 		        } catch (InterruptedException ie) {
 		        	//System.out.println("przrwanie sleep");
 		        }
-				
+				wylacz();
 			}
-			wylacz();
+			try {
+	            Thread.sleep(15);
+	        } catch (InterruptedException ie) {
+	        	//System.out.println("przrwanie sleep");
+	        }
 		}
 	}
 }

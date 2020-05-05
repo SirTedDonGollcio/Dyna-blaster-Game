@@ -78,12 +78,12 @@ public class GraC implements Runnable{
     Spider spiders[] = new Spider[iloscPajakow];
     Thread[] pajeczaki = new Thread[iloscPajakow];
     
-    Bomber bomber = new Bomber(0,0);
+    Bomber bomber;
     
     Thread kicker = null;
     
-    JLabel healthBar = hb.healthBar(bomber);
-    JLabel bombBar = bb.bombBar(bomber);
+    JLabel healthBar;
+    JLabel bombBar;
     //Level level = new Level(iloscScian,iloscFragscian,iloscPajakow);
     
     
@@ -109,8 +109,11 @@ public class GraC implements Runnable{
 			daneP[iter][0]=level.daneP[iter][0];
 			daneP[iter][1]=level.daneP[iter][1];
 		}
+		bomber = new Bomber(level.pozycjaBomberaX,level.pozycjaBomberaY);
 		bomber.iloscBomb = level.iloscBomb;
 		bomber.iloscZycia = level.iloscZycia;
+		healthBar = hb.healthBar(bomber);
+	    bombBar = bb.bombBar(bomber);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 	        @Override
@@ -138,7 +141,7 @@ public class GraC implements Runnable{
         f.setBackground(new Color(64, 62, 60));
         f.setLocationRelativeTo(null);
         f.game = game;
-     	
+        
         for(int iter = 0; iter < iloscScian;iter++)
         {
         	Wall wall = new Wall(daneW[iter][0],daneW[iter][1]);
@@ -265,15 +268,15 @@ public class GraC implements Runnable{
         	spiders[iter].sizeX = (int)(OBJ_DIM*xScale);
         	spiders[iter].sizeY = (int)(OBJ_DIM*yScale);
         }
-        
+        bomber.bombSizeX = (int)(OBJ_DIM*xScale);
+    	bomber.bombSizeY = (int)(OBJ_DIM*yScale);
         for(int iter = 0; iter<bomber.currentBombs;iter++)
         {
         	
         	
         	bomber.bombs[iter].sizeX = (int)(OBJ_DIM*xScale);
         	bomber.bombs[iter].sizeY = (int)(OBJ_DIM*yScale);
-        	bomber.bombSizeX = (int)(OBJ_DIM*xScale);
-        	bomber.bombSizeY = (int)(OBJ_DIM*yScale);
+        	
         	bomber.bombs[iter].posX = (int)(bomber.bombs[iter].posX*nWidth/bomber.bombs[iter].lX);
         	bomber.bombs[iter].posY = (int)(bomber.bombs[iter].posY*nHeight/bomber.bombs[iter].lY);
         	ImageIcon imageIcon = new ImageIcon(il.scaleI(bomber.bombs[iter].i,bomber.bombs[iter].sizeX,bomber.bombs[iter].sizeY));
@@ -399,10 +402,8 @@ public class GraC implements Runnable{
 				if(myTimer.flag==0)
 				{
 				bomber.iloscZycia--;
-				myTimer.startuj=true;
 				myTimer.wlacz();
 				}
-				
 				b=true;
 				//System.out.print("Koliduje na dole od bomber - pajak\n");
 			}
@@ -439,13 +440,12 @@ public class GraC implements Runnable{
 		{
 			if((((bomber.posY) - (spiders[iter].posY+spiders[iter].sizeY) <= 0)&&((bomber.posY) - (spiders[iter].posY+spiders[iter].sizeY) >= -8*bomber.sizeY/55))&&((((spiders[iter].posX+spiders[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))>0)&&((spiders[iter].posX+spiders[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))<spiders[iter].sizeX))||(((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-spiders[iter].posX>0)&&((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-spiders[iter].posX<spiders[iter].sizeX))))
 			{
-				b=true;
 				if(myTimer.flag==0)
 				{
 				bomber.iloscZycia--;
-				myTimer.startuj=true;
 				myTimer.wlacz();
 				}
+				b=true;
 				//System.out.print("Koliduje na gorze od bomber - pajak\n");
 			}
 		}
@@ -484,9 +484,9 @@ public class GraC implements Runnable{
 				if(myTimer.flag==0)
 				{
 				bomber.iloscZycia--;
-				myTimer.startuj=true;
 				myTimer.wlacz();
 				}
+				b=true;
 				//System.out.print("Koliduje na prawo od bomber - pajak\n");
 			}
 		}
@@ -524,7 +524,6 @@ public class GraC implements Runnable{
 				if(myTimer.flag==0)
 				{
 				bomber.iloscZycia--;
-				myTimer.startuj=true;
 				myTimer.wlacz();
 				}
 				b=true;

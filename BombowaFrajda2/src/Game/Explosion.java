@@ -22,8 +22,8 @@ public class Explosion extends ObjectCreator implements Runnable{
 	public int zmniejsznikY;
 	public Explosion(int x,int y,Bomber player,JLabel game)
 	{
-		zmniejsznikX = (player.bombSizeX/55)*15;
-		zmniejsznikY = (player.bombSizeY/55)*15;
+		zmniejsznikX = player.bombSizeX/5;
+		zmniejsznikY = player.bombSizeY/5;
 
 		this.game = game;
 		this.player = player;
