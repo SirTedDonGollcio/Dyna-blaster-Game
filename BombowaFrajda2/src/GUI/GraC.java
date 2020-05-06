@@ -109,6 +109,10 @@ public class GraC implements Runnable{
 			daneP[iter][0]=level.daneP[iter][0];
 			daneP[iter][1]=level.daneP[iter][1];
 		}
+		//dane od wypadników
+		int iloscDiamentow = 10;
+		int[] daneDiamonds = {1,5,7,10,18,24,31,34,42,51};
+		//koniec danych diamonds
 		bomber = new Bomber(level.pozycjaBomberaX,level.pozycjaBomberaY);
 		bomber.iloscBomb = level.iloscBomb;
 		bomber.iloscZycia = level.iloscZycia;
@@ -168,7 +172,12 @@ public class GraC implements Runnable{
             }*/
         	//spiders[iter].kicker.run();
         	game.add(spiders[iter].getLabel());
-        }     
+        }
+
+		for(int iter=0;iter<iloscDiamentow;iter++)
+		{
+			fragWalls[daneDiamonds[iter]].wypadnik = 1;
+		}
         
         game.add(bomber.getLabel());
         f.player = bomber;

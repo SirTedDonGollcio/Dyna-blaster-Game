@@ -11,6 +11,8 @@ import Game.ObjectCreator;
 
 public class FragileWall extends ObjectCreator{
 	
+	public int wypadnik=0;
+	
 	public FragileWall(int x, int y) {
 		tempX=x;
 		tempY=y;
