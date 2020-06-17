@@ -38,13 +38,13 @@ public class Explosion extends ObjectCreator implements Runnable{
 	        	i = il.imageL("Images/explosion.png");
 	    		ii = new ImageIcon(il.scaleI(i, sizeX, sizeY));
 	    		
-	    	    eUp = new ExplosionUp(posX,posY-1,sizeX,1,player);
+	    	    eUp = new ExplosionUp(posX,posY-1,sizeX,1,player,game);
 	    	    (eUp.kicker= new Thread(eUp)).start();
-	    	    eDown = new ExplosionDown(posX,posY+sizeY,sizeX,1,player,game.getHeight());
+	    	    eDown = new ExplosionDown(posX,posY+sizeY,sizeX,1,player,game.getHeight(),game);
 	    	    (eDown.kicker= new Thread(eDown)).start();
-	    	    eLeft = new ExplosionLeft(posX-1,posY,1,sizeY,player);
+	    	    eLeft = new ExplosionLeft(posX-1,posY,1,sizeY,player,game);
 	    	    (eLeft.kicker= new Thread(eLeft)).start();
-	    	    eRight = new ExplosionRight(posX+sizeX,posY,1,sizeY,player,game.getWidth());
+	    	    eRight = new ExplosionRight(posX+sizeX,posY,1,sizeY,player,game.getWidth(),game);
 	    	    (eRight.kicker= new Thread(eRight)).start();
 	        	
 	    	    l.setIcon(ii);
@@ -82,8 +82,8 @@ public class Explosion extends ObjectCreator implements Runnable{
 			sleeep();
 			//System.out.print("Lol\n" + eUp.isEnded + eDown.isEnded + eLeft.isEnded + eRight.isEnded + "\n");
 		};
-		if(eUp.isEnded&&eDown.isEnded&&eLeft.isEnded&&eRight.isEnded)
-		{
+		//if(eUp.isEnded&&eDown.isEnded&&eLeft.isEnded&&eRight.isEnded)
+		//{
 			//System.out.print("Lol");
 			sleeeep();
 			l.setVisible(false);
@@ -96,6 +96,6 @@ public class Explosion extends ObjectCreator implements Runnable{
 			eLeft.kicker = null;
 			eRight.kicker = null;
 			kicker = null;
-		}
+		//}
 	}
 }

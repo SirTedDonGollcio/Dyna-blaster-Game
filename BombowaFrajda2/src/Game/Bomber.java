@@ -23,6 +23,7 @@ public class Bomber extends ObjectCreator{
 	public int direction;
 	public int iloscZycia = 5;
 	public int iloscBomb = 3;
+	public int iloscPunktow = 0;
 	public int currentBombs = 0;
 	public Bomb[] bombs = new Bomb[5];
 	public int bombSizeX=55;
@@ -45,6 +46,8 @@ public class Bomber extends ObjectCreator{
 	public Wall[] walls;
 	public FragileWall[] fragWalls;
 	public Spider spiders[];
+	public Diamond diamonds[];
+	public int iloscDiamentowNaMapie=0;
 	
 	public Bomber(int x, int y) {
 		

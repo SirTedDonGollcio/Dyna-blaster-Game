@@ -17,6 +17,7 @@ import Game.Spider;
 import Client.Timer;
 import Client.FileOperator;
 import Client.Level;
+import Game.Diamond;
 
 public class GraC implements Runnable{
     
@@ -34,6 +35,8 @@ public class GraC implements Runnable{
     JLabel userGUI = new JLabel();
     HealthBar hb = new HealthBar();
     BombBar bb = new BombBar();
+    ScoreBar sb = new ScoreBar();
+    TimerBar tb = new TimerBar();
     
     BufferedImage image = il.imageL("Images/game_background.png");
     ImageIcon backgroundIcon = new ImageIcon(image);
@@ -65,6 +68,7 @@ public class GraC implements Runnable{
     //int[][] dane = new int[iloscPajakow][2];
     int[][] daneP = {{5,0},{7,2},{2,4},{5,6},{5,10}};
     */
+    int[] daneB = {1,0,1,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0};
     Level level = fo.readLevel();
     int iloscScian = level.ileScian;
     int[][] daneW = new int[iloscScian][2];
@@ -81,9 +85,11 @@ public class GraC implements Runnable{
     Bomber bomber;
     
     Thread kicker = null;
-    
+     
     JLabel healthBar;
     JLabel bombBar;
+    JLabel scoreBar;
+    JLabel timerBar;
     //Level level = new Level(iloscScian,iloscFragscian,iloscPajakow);
     
     
@@ -94,6 +100,7 @@ public class GraC implements Runnable{
 		level.pozycjaBomberaX = 0;
 		level.pozycjaBomberaY=0;
 		fo.saveLevel(level);*/
+		
 		for(int iter=0;iter<iloscScian;iter++)
 		{
 			daneW[iter][0]=level.daneW[iter][0];
@@ -109,15 +116,18 @@ public class GraC implements Runnable{
 			daneP[iter][0]=level.daneP[iter][0];
 			daneP[iter][1]=level.daneP[iter][1];
 		}
-		//dane od wypadników
+		/*//dane od wypadników
 		int iloscDiamentow = 10;
 		int[] daneDiamonds = {1,5,7,10,18,24,31,34,42,51};
-		//koniec danych diamonds
+		//koniec danych diamonds*/
 		bomber = new Bomber(level.pozycjaBomberaX,level.pozycjaBomberaY);
 		bomber.iloscBomb = level.iloscBomb;
 		bomber.iloscZycia = level.iloscZycia;
+		bomber.diamonds = new Diamond[iloscFragscian];
 		healthBar = hb.healthBar(bomber);
 	    bombBar = bb.bombBar(bomber);
+	    scoreBar = sb.scoreBar(bomber);
+	    timerBar = tb.timerBar(bomber);
 		
 		SwingUtilities.invokeLater(new Runnable() {
 	        @Override
@@ -134,8 +144,12 @@ public class GraC implements Runnable{
         f.add(userGUI);
         userGUI.add(healthBar);
         userGUI.add(bombBar);
+        userGUI.add(scoreBar);
+        userGUI.add(timerBar);
         (hb.kicker = new Thread(hb)).start();
         (bb.kicker = new Thread(bb)).start();
+        (sb.kicker = new Thread(sb)).start();
+        (tb.kicker = new Thread(tb)).start();
         
         game.setBounds(GAME_START,GAME_START, GAME_DIM, GAME_DIM);
         
@@ -174,9 +188,9 @@ public class GraC implements Runnable{
         	game.add(spiders[iter].getLabel());
         }
 
-		for(int iter=0;iter<iloscDiamentow;iter++)
+        for(int iter=0;iter<iloscFragscian-1;iter++)
 		{
-			fragWalls[daneDiamonds[iter]].wypadnik = 1;
+			fragWalls[iter].wypadnik = daneB[iter];
 		}
         
         game.add(bomber.getLabel());

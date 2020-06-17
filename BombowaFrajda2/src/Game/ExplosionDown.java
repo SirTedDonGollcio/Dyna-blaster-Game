@@ -1,16 +1,19 @@
 package Game;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 public class ExplosionDown extends ObjectCreator implements Runnable{
 	public Thread kicker = null;
 	public boolean isEnded=false;
+	public JLabel game;
 	Bomber player;
 	public int yBound;
 	
-	public ExplosionDown(int x,int y,int sX,int sY,Bomber bombi,int maxHeight)
+	public ExplosionDown(int x,int y,int sX,int sY,Bomber bombi,int maxHeight,JLabel game)
 	{
+		this.game = game;
 		yBound = maxHeight;
 		player = bombi;
 		posX=x;
@@ -65,6 +68,15 @@ public class ExplosionDown extends ObjectCreator implements Runnable{
 			if((((posY+sizeY)>player.fragWalls[iter].posY)&&((posY+sizeY)<(player.fragWalls[iter].posY+player.fragWalls[iter].sizeY)))&&(((posX>player.fragWalls[iter].posX)&&(posX<(player.fragWalls[iter].posX+player.fragWalls[iter].sizeX)))||(((posX+sizeX)>player.fragWalls[iter].posX)&&((posX+sizeX)<(player.fragWalls[iter].posX+player.fragWalls[iter].sizeX)))))
 			{
 				b=true;
+				if(player.fragWalls[iter].wypadnik==1)
+				{
+					//System.out.print("Diamencik\n");
+					Diamond diamond = new Diamond(player.fragWalls[iter].posX,player.fragWalls[iter].posY,player);
+					game.add(diamond.getLabel());
+					player.diamonds[player.iloscDiamentowNaMapie] = diamond;
+					player.iloscDiamentowNaMapie+=1;
+					(diamond.kicker= new Thread(diamond)).start();
+				}
 				player.fragWalls[iter].posX=5000;
 				player.fragWalls[iter].posY=5000;
 				player.fragWalls[iter].l.setVisible(false);

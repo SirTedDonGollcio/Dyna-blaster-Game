@@ -84,6 +84,7 @@ public class MenuC implements Runnable{
                 f.dispose();
                 kicker = null;
                 sleeep();
+                sleeep();
                 (f1.kicker = new Thread(f1)).start();
             }
         });
