@@ -9,8 +9,21 @@ import javax.swing.*;
 import java.awt.event.*;
 import GUI.ImageLoader;
 import Game.Bomber;
+import Parameters.Dimensions;
 
 public class HealthBar extends JLabel implements Runnable{
+	Dimensions p = new Dimensions();
+	
+	final int HPBAR_XY_MAIN = p.HPBAR_XY_MAIN;
+	final int HPBAR_XS_MAIN= p.HPBAR_XS_MAIN;
+	final int HPBAR_SIZE= p.HPBAR_SIZE;
+	final int HPBAR_X_1= p.HPBAR_X_1;
+	final int HPBAR_X_2= p.HPBAR_X_2;
+	final int HPBAR_X_3= p.HPBAR_X_3;
+	final int HPBAR_X_4= p.HPBAR_X_4;
+	final int HPBAR_X_5= p.HPBAR_X_5;
+	final int HPBAR_Y= p.HPBAR_Y;
+	
 	public Bomber bomber;
 	public Thread kicker = null;
 	JLabel h1 = new JLabel();
@@ -30,12 +43,12 @@ public class HealthBar extends JLabel implements Runnable{
 	        public void run() {
 		BufferedImage ib1 = il.imageL("Images/heart.png");
         ImageIcon i1 = new ImageIcon(ib1);
-        hb.setBounds(20, 20, 335, 55);
-        h1.setBounds(10,0,55,55);
-        h2.setBounds(75,0,55,55);
-        h3.setBounds(140,0,55,55);
-        h4.setBounds(205,0,55,55);
-        h5.setBounds(270,0,55,55);
+        hb.setBounds(HPBAR_XY_MAIN, HPBAR_XY_MAIN, HPBAR_XS_MAIN, HPBAR_SIZE);
+        h1.setBounds(HPBAR_X_1,HPBAR_Y,HPBAR_SIZE,HPBAR_SIZE);
+        h2.setBounds(HPBAR_X_2,HPBAR_Y,HPBAR_SIZE,HPBAR_SIZE);
+        h3.setBounds(HPBAR_X_3,HPBAR_Y,HPBAR_SIZE,HPBAR_SIZE);
+        h4.setBounds(HPBAR_X_4,HPBAR_Y,HPBAR_SIZE,HPBAR_SIZE);
+        h5.setBounds(HPBAR_X_5,HPBAR_Y,HPBAR_SIZE,HPBAR_SIZE);
         h1.setIcon(i1);
         h2.setIcon(i1);
         h3.setIcon(i1);

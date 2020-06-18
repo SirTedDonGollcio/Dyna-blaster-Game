@@ -2,21 +2,21 @@ package Game;
 
 import javax.swing.ImageIcon;
 
-public class Diamond extends ObjectCreator implements Runnable{
+public class Key extends ObjectCreator implements Runnable{
 	
 	public Bomber player;
 	public int lX=645;
 	public int lY=645;
 	public Thread kicker = null;
 	
-	public Diamond(int x, int y,Bomber bomber) {
+	public Key(int x, int y,Bomber bomber) {
 		
 		posX=x;
 		posY=y;
 		player=bomber;
 		sizeX=player.bombSizeX;
 		sizeY=player.bombSizeY;
-		i = il.imageL("Images/diamond.png");
+		i = il.imageL("Images/key.png");
 		ii = new ImageIcon(il.scaleI(i, sizeX, sizeY));
 		l.setIcon(ii);
 	    l.setBounds(x,y,sizeX,sizeY);
@@ -42,7 +42,7 @@ public class Diamond extends ObjectCreator implements Runnable{
 				{
 					l.setVisible(false);
 					l.setBounds(5000,5000,0,0);
-					player.iloscPunktow+=30;
+					player.czyMamKlucz=true;
 					kicker=null;
 				}
 			}

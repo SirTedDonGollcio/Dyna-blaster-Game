@@ -77,6 +77,14 @@ public class ExplosionDown extends ObjectCreator implements Runnable{
 					player.iloscDiamentowNaMapie+=1;
 					(diamond.kicker= new Thread(diamond)).start();
 				}
+				else if(player.fragWalls[iter].wypadnik==2)
+				{
+					//System.out.print("Drzwiczki\n");
+					Door door = new Door(player.fragWalls[iter].posX,player.fragWalls[iter].posY,player);
+					game.add(door.getLabel());
+					player.door = door;
+					(door.kicker= new Thread(door)).start();
+				}
 				player.fragWalls[iter].posX=5000;
 				player.fragWalls[iter].posY=5000;
 				player.fragWalls[iter].l.setVisible(false);
@@ -89,9 +97,19 @@ public class ExplosionDown extends ObjectCreator implements Runnable{
 			if((((posY+sizeY)>player.spiders[iter].posY)&&((posY+sizeY)<(player.spiders[iter].posY+player.spiders[iter].sizeY)))&&(((posX>player.spiders[iter].posX)&&(posX<(player.spiders[iter].posX+player.spiders[iter].sizeX)))||(((posX+sizeX)>player.spiders[iter].posX)&&((posX+sizeX)<(player.spiders[iter].posX+player.spiders[iter].sizeX)))))
 			{
 				b=true;
+				if(player.spiders[iter].haveKey)
+				{
+					//System.out.print("Diamencik\n");
+					Key key = new Key(player.spiders[iter].posX,player.spiders[iter].posY,player);
+					game.add(key.getLabel());
+					player.key=key;
+					(key.kicker= new Thread(key)).start();
+				}
 				player.spiders[iter].posX=5000;
 				player.spiders[iter].posY=5000;
 				player.spiders[iter].l.setVisible(false);
+				player.spiders[iter].kicker=null;
+				player.iloscPunktow+=10;
 				//System.out.print("DOWN MORTE\n");
 				return b;
 			}

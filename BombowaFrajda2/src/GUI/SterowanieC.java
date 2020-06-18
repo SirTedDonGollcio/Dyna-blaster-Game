@@ -7,52 +7,56 @@ import java.io.*;
 import javax.imageio.*;
 import javax.swing.*;
 import java.awt.event.*;
+import Parameters.Dimensions;
 
 public class SterowanieC implements Runnable{
-	final int FRAME_WIDTH = 700;
-    final int FRAME_HEIGHT = 500;
-    final int SIZE = 55;
-    final int SPACE_HEIGHT = 30;
-    final int SPACE_WIDTH = 158;
-    final int FRONT_X = 180;
-    final int BACK_X = 181;
-    final int LEFT_X = 69;
-    final int RIGHT_X = 303;
-    final int W_X = 180;
-    final int A_X = 126;
-    final int S_X = 184;
-    final int D_X = 243;
-    final int SPACE_X = 440;
-    final int ESC_X = 25;
-    final int BOMB_X = 499;
-    final int Q_X = 440;
-    final int E_X = 520;
-    final int T1_X = 105;
-    final int T2_X = 459;
-    final int T3_X = 440;
-    final int FRONT_Y = 296;
-    final int BACK_Y = 116;
-    final int LEFT_Y = 232;
-    final int RIGHT_Y = 235;
-    final int W_Y = 175;
-    final int A_Y = 235;
-    final int S_Y = 234;
-    final int D_Y = 236;
-    final int SPACE_Y = 323;
-    final int ESC_Y = 17;
-    final int BOMB_Y = 258;
-    final int Q_Y = 165;
-    final int E_Y = 165;
-    final int T1_Y = 19;
-    final int T2_Y = 28;
-    final int T3_Y = 90;
-    final int T1_HEIGHT = 54;
-    final int T1_WIDTH = 160;
-    final int T2_HEIGHT = 52;
-    final int T2_WIDTH = 154;
-    final int T3_HEIGHT = 50;
-    final int T3_WIDTH = 195;
-    final int FONT_SIZE = 43;
+	
+	Dimensions p = new Dimensions();
+	
+	final int SS_FRAME_WIDTH = p.SS_FRAME_WIDTH ;
+    final int SS_FRAME_HEIGHT = p.SS_FRAME_HEIGHT ;
+    final int SS_SIZE = p.SS_SIZE ;
+    final int SS_SPACE_HEIGHT = p.SS_SPACE_HEIGHT ;
+    final int SS_SPACE_WIDTH = p.SS_SPACE_WIDTH ;
+    final int SS_FRONT_X = p.SS_FRONT_X ;
+    final int SS_BACK_X = p.SS_BACK_X ;
+    final int SS_LEFT_X = p.SS_LEFT_X ;
+    final int SS_RIGHT_X = p.SS_RIGHT_X ;
+    final int SS_W_X = p.SS_W_X ;
+    final int SS_A_X = p.SS_A_X ;
+    final int SS_S_X = p.SS_S_X ;
+    final int SS_D_X = p.SS_D_X ;
+    final int SS_SPACE_X = p.SS_SPACE_X ;
+    final int SS_ESC_X = p.SS_ESC_X ;
+    final int SS_BOMB_X = p.SS_BOMB_X ;
+    final int SS_Q_X = p.SS_Q_X ;
+    final int SS_E_X = p.SS_E_X ;
+    final int SS_T1_X = p.SS_T1_X ;
+    final int SS_T2_X = p.SS_T2_X ;
+    final int SS_T3_X = p.SS_T3_X ;
+    final int SS_FRONT_Y = p.SS_FRONT_Y ;
+    final int SS_BACK_Y = p.SS_BACK_Y ;
+    final int SS_LEFT_Y = p.SS_LEFT_Y ;
+    final int SS_RIGHT_Y = p.SS_RIGHT_Y ;
+    final int SS_W_Y = p.SS_W_Y ;
+    final int SS_A_Y = p.SS_A_Y ;
+    final int SS_S_Y = p.SS_S_Y ;
+    final int SS_D_Y = p.SS_D_Y ;
+    final int SS_SPACE_Y = p.SS_SPACE_Y ;
+    final int SS_ESC_Y = p.SS_ESC_Y ;
+    final int SS_BOMB_Y = p.SS_BOMB_Y ;
+    final int SS_Q_Y = p.SS_Q_Y ;
+    final int SS_E_Y = p.SS_E_Y ;
+    final int SS_T1_Y = p.SS_T1_Y ;
+    final int SS_T2_Y = p.SS_T2_Y ;
+    final int SS_T3_Y = p.SS_T3_Y ;
+    final int SS_T1_HEIGHT = p.SS_T1_HEIGHT ;
+    final int SS_T1_WIDTH = p.SS_T1_WIDTH ;
+    final int SS_T2_HEIGHT = p.SS_T2_HEIGHT ;
+    final int SS_T2_WIDTH = p.SS_T2_WIDTH ;
+    final int SS_T3_HEIGHT = p.SS_T3_HEIGHT ;
+    final int SS_T3_WIDTH = p.SS_T3_WIDTH ;
+    final int SS_FONT_SIZE = p.SS_FONT_SIZE ;
     
     Thread kicker = null;
     
@@ -109,7 +113,7 @@ public class SterowanieC implements Runnable{
         SwingUtilities.invokeLater(new Runnable() {
         @Override
         public void run() {
-        f.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        f.setSize(SS_FRAME_WIDTH, SS_FRAME_HEIGHT);
         f.setLayout(null);
         f.setLocationRelativeTo(null);
         
@@ -129,28 +133,28 @@ public class SterowanieC implements Runnable{
         lE.setIcon(i13);
         
         
-        lFront.setBounds(FRONT_X, FRONT_Y,SIZE,SIZE);
-        lBack.setBounds(BACK_X, BACK_Y,SIZE,SIZE);
-        lLeft.setBounds(LEFT_X, LEFT_Y,SIZE,SIZE);
-        lRight.setBounds(RIGHT_X, RIGHT_Y,SIZE,SIZE);
-        lW.setBounds(W_X, W_Y,SIZE,SIZE);
-        lA.setBounds(A_X, A_Y,SIZE,SIZE);
-        lS.setBounds(S_X, S_Y,SIZE,SIZE);
-        lD.setBounds(D_X, D_Y,SIZE,SIZE);
-        lSpace.setBounds(SPACE_X, SPACE_Y,SPACE_WIDTH,SPACE_HEIGHT);
-        lEsc.setBounds(ESC_X, ESC_Y,SIZE,SIZE);
-        lBomb.setBounds(BOMB_X, BOMB_Y,SIZE,SIZE);
-        lQ.setBounds(Q_X, Q_Y,SIZE,SIZE);
-        lE.setBounds(E_X, E_Y,SIZE,SIZE);
+        lFront.setBounds(SS_FRONT_X, SS_FRONT_Y,SS_SIZE,SS_SIZE);
+        lBack.setBounds(SS_BACK_X, SS_BACK_Y,SS_SIZE,SS_SIZE);
+        lLeft.setBounds(SS_LEFT_X, SS_LEFT_Y,SS_SIZE,SS_SIZE);
+        lRight.setBounds(SS_RIGHT_X, SS_RIGHT_Y,SS_SIZE,SS_SIZE);
+        lW.setBounds(SS_W_X, SS_W_Y,SS_SIZE,SS_SIZE);
+        lA.setBounds(SS_A_X, SS_A_Y,SS_SIZE,SS_SIZE);
+        lS.setBounds(SS_S_X, SS_S_Y,SS_SIZE,SS_SIZE);
+        lD.setBounds(SS_D_X, SS_D_Y,SS_SIZE,SS_SIZE);
+        lSpace.setBounds(SS_SPACE_X, SS_SPACE_Y,SS_SPACE_WIDTH,SS_SPACE_HEIGHT);
+        lEsc.setBounds(SS_ESC_X, SS_ESC_Y,SS_SIZE,SS_SIZE);
+        lBomb.setBounds(SS_BOMB_X, SS_BOMB_Y,SS_SIZE,SS_SIZE);
+        lQ.setBounds(SS_Q_X, SS_Q_Y,SS_SIZE,SS_SIZE);
+        lE.setBounds(SS_E_X, SS_E_Y,SS_SIZE,SS_SIZE);
 
         
-        lText1.setBounds(T1_X,T1_Y,T1_WIDTH,T1_HEIGHT);
-        lText2.setBounds(T2_X,T2_Y,T2_WIDTH,T2_HEIGHT);
-        lText3.setBounds(T3_X,T3_Y,T3_WIDTH,T3_HEIGHT);
+        lText1.setBounds(SS_T1_X,SS_T1_Y,SS_T1_WIDTH,SS_T1_HEIGHT);
+        lText2.setBounds(SS_T2_X,SS_T2_Y,SS_T2_WIDTH,SS_T2_HEIGHT);
+        lText3.setBounds(SS_T3_X,SS_T3_Y,SS_T3_WIDTH,SS_T3_HEIGHT);
         
-        lText1.setFont(new Font("Lucida",Font.PLAIN,FONT_SIZE));
-        lText2.setFont(new Font("Lucida",Font.PLAIN,FONT_SIZE));
-        lText3.setFont(new Font("Lucida",Font.PLAIN,FONT_SIZE));
+        lText1.setFont(new Font("Lucida",Font.PLAIN,SS_FONT_SIZE));
+        lText2.setFont(new Font("Lucida",Font.PLAIN,SS_FONT_SIZE));
+        lText3.setFont(new Font("Lucida",Font.PLAIN,SS_FONT_SIZE));
         
         f.add(lFront);
         f.add(lBack);
@@ -196,55 +200,55 @@ public class SterowanieC implements Runnable{
     	}
     	int nWidth = f.getWidth();
         int nHeight = f.getHeight();
-        float yScale = (float)nHeight/(float)FRAME_HEIGHT;
-        float xScale = (float)nWidth/(float)FRAME_WIDTH;
+        float yScale = (float)nHeight/(float)SS_FRAME_HEIGHT;
+        float xScale = (float)nWidth/(float)SS_FRAME_WIDTH;
         
-        ImageIcon nI1 = new ImageIcon(il.scaleI(ib1,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI1 = new ImageIcon(il.scaleI(ib1,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lFront.setIcon(nI1);
-        ImageIcon nI2 = new ImageIcon(il.scaleI(ib2,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI2 = new ImageIcon(il.scaleI(ib2,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lBack.setIcon(nI2);
-        ImageIcon nI3 = new ImageIcon(il.scaleI(ib3,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI3 = new ImageIcon(il.scaleI(ib3,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lRight.setIcon(nI3);
-        ImageIcon nI4 = new ImageIcon(il.scaleI(ib4,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI4 = new ImageIcon(il.scaleI(ib4,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lLeft.setIcon(nI4);
-        ImageIcon nI5 = new ImageIcon(il.scaleI(ib5,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI5 = new ImageIcon(il.scaleI(ib5,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lW.setIcon(nI5);
-        ImageIcon nI6 = new ImageIcon(il.scaleI(ib6,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI6 = new ImageIcon(il.scaleI(ib6,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lA.setIcon(nI6);
-        ImageIcon nI7 = new ImageIcon(il.scaleI(ib7,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI7 = new ImageIcon(il.scaleI(ib7,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lS.setIcon(nI7);
-        ImageIcon nI8 = new ImageIcon(il.scaleI(ib8,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI8 = new ImageIcon(il.scaleI(ib8,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lD.setIcon(nI8);
-        ImageIcon nI9 = new ImageIcon(il.scaleI(ib9,(int)(SPACE_WIDTH*xScale),(int)(SPACE_HEIGHT*yScale)));
+        ImageIcon nI9 = new ImageIcon(il.scaleI(ib9,(int)(SS_SPACE_WIDTH*xScale),(int)(SS_SPACE_HEIGHT*yScale)));
         lSpace.setIcon(nI9);
-        ImageIcon nI10 = new ImageIcon(il.scaleI(ib10,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI10 = new ImageIcon(il.scaleI(ib10,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lEsc.setIcon(nI10);
-        ImageIcon nI11 = new ImageIcon(il.scaleI(ib11,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI11 = new ImageIcon(il.scaleI(ib11,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lBomb.setIcon(nI11);
-        ImageIcon nI12 = new ImageIcon(il.scaleI(ib12,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI12 = new ImageIcon(il.scaleI(ib12,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lQ.setIcon(nI12);
-        ImageIcon nI13 = new ImageIcon(il.scaleI(ib13,(int)(SIZE*xScale),(int)(SIZE*yScale)));
+        ImageIcon nI13 = new ImageIcon(il.scaleI(ib13,(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale)));
         lE.setIcon(nI13);
         
-        lFront.setBounds((int)(FRONT_X*xScale), (int)(FRONT_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lBack.setBounds((int)(BACK_X*xScale), (int)(BACK_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lLeft.setBounds((int)(LEFT_X*xScale), (int)(LEFT_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lRight.setBounds((int)(RIGHT_X*xScale), (int)(RIGHT_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lW.setBounds((int)(W_X*xScale), (int)(W_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lA.setBounds((int)(A_X*xScale), (int)(A_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lS.setBounds((int)(S_X*xScale), (int)(S_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lD.setBounds((int)(D_X*xScale), (int)(D_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lSpace.setBounds((int)(SPACE_X*xScale), (int)(SPACE_Y*yScale),(int)(SPACE_WIDTH*xScale),(int)(SPACE_HEIGHT*yScale));
-        lEsc.setBounds((int)(ESC_X*xScale), (int)(ESC_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lBomb.setBounds((int)(BOMB_X*xScale), (int)(BOMB_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lQ.setBounds((int)(Q_X*xScale), (int)(Q_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lE.setBounds((int)(E_X*xScale), (int)(E_Y*yScale),(int)(SIZE*xScale),(int)(SIZE*yScale));
-        lText1.setBounds((int)(T1_X*xScale),(int)(T1_Y*yScale),(int)(T1_WIDTH*xScale),(int)(T1_HEIGHT*yScale));
-        lText2.setBounds((int)(T2_X*xScale),(int)(T2_Y*yScale),(int)(T2_WIDTH*xScale),(int)(T2_HEIGHT*yScale));
-        lText3.setBounds((int)(T3_X*xScale),(int)(T3_Y*yScale),(int)(T3_WIDTH*xScale),(int)(T3_HEIGHT*yScale));
-        lText1.setFont(new Font("Lucida",Font.PLAIN,(int)(FONT_SIZE*xScale)));
-        lText2.setFont(new Font("Lucida",Font.PLAIN,(int)(FONT_SIZE*xScale)));
-        lText3.setFont(new Font("Lucida",Font.PLAIN,(int)(FONT_SIZE*xScale)));
+        lFront.setBounds((int)(SS_FRONT_X*xScale), (int)(SS_FRONT_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lBack.setBounds((int)(SS_BACK_X*xScale), (int)(SS_BACK_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lLeft.setBounds((int)(SS_LEFT_X*xScale), (int)(SS_LEFT_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lRight.setBounds((int)(SS_RIGHT_X*xScale), (int)(SS_RIGHT_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lW.setBounds((int)(SS_W_X*xScale), (int)(SS_W_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lA.setBounds((int)(SS_A_X*xScale), (int)(SS_A_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lS.setBounds((int)(SS_S_X*xScale), (int)(SS_S_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lD.setBounds((int)(SS_D_X*xScale), (int)(SS_D_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lSpace.setBounds((int)(SS_SPACE_X*xScale), (int)(SS_SPACE_Y*yScale),(int)(SS_SPACE_WIDTH*xScale),(int)(SS_SPACE_HEIGHT*yScale));
+        lEsc.setBounds((int)(SS_ESC_X*xScale), (int)(SS_ESC_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lBomb.setBounds((int)(SS_BOMB_X*xScale), (int)(SS_BOMB_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lQ.setBounds((int)(SS_Q_X*xScale), (int)(SS_Q_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lE.setBounds((int)(SS_E_X*xScale), (int)(SS_E_Y*yScale),(int)(SS_SIZE*xScale),(int)(SS_SIZE*yScale));
+        lText1.setBounds((int)(SS_T1_X*xScale),(int)(SS_T1_Y*yScale),(int)(SS_T1_WIDTH*xScale),(int)(SS_T1_HEIGHT*yScale));
+        lText2.setBounds((int)(SS_T2_X*xScale),(int)(SS_T2_Y*yScale),(int)(SS_T2_WIDTH*xScale),(int)(SS_T2_HEIGHT*yScale));
+        lText3.setBounds((int)(SS_T3_X*xScale),(int)(SS_T3_Y*yScale),(int)(SS_T3_WIDTH*xScale),(int)(SS_T3_HEIGHT*yScale));
+        lText1.setFont(new Font("Lucida",Font.PLAIN,(int)(SS_FONT_SIZE*xScale)));
+        lText2.setFont(new Font("Lucida",Font.PLAIN,(int)(SS_FONT_SIZE*xScale)));
+        lText3.setFont(new Font("Lucida",Font.PLAIN,(int)(SS_FONT_SIZE*xScale)));
         
         (kicker = new Thread(this)).start();
     }

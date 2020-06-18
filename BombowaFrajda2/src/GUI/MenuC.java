@@ -17,12 +17,14 @@ import GUI.WynikiC;
 import GUI.SterowanieC;
 import GUI.WyjscieC;
 import GUI.ImageLoader;
-
+import Parameters.Dimensions;
 
 
 
 public class MenuC implements Runnable{
     
+	Dimensions p = new Dimensions();
+	
 	private JFrame f = new JFrame("Bombowa Frajda");
 	
 	public Thread kicker = null;
@@ -36,8 +38,8 @@ public class MenuC implements Runnable{
     BufferedImage image = il.imageL("Images/title.jpg");
     ImageIcon imageIcon = new ImageIcon(image);
     
-    private final int FRAME_WIDTH = 700;
-    private final int FRAME_HEIGHT = 500;
+    private final int MENU_FRAME_WIDTH = 700;
+    private final int MENU_FRAME_HEIGHT = 500;
     private final int B_WIDTH =200;
     private final int B_HIGH =50;
     private final int B_X =250;
@@ -84,7 +86,6 @@ public class MenuC implements Runnable{
                 f.dispose();
                 kicker = null;
                 sleeep();
-                sleeep();
                 (f1.kicker = new Thread(f1)).start();
             }
         });
@@ -113,7 +114,7 @@ public class MenuC implements Runnable{
         
         
        
-        f.setSize(FRAME_WIDTH,FRAME_HEIGHT);
+        f.setSize(MENU_FRAME_WIDTH,MENU_FRAME_HEIGHT);
         jLabel.setIcon(imageIcon);
         f.add(jLabel);
         f.setContentPane(jLabel);
@@ -154,8 +155,8 @@ public class MenuC implements Runnable{
     	}
     	int nWidth = f.getWidth();
         int nHeight = f.getHeight();
-        float yScale = (float)nHeight/(float)FRAME_HEIGHT;
-        float xScale = (float)nWidth/(float)FRAME_WIDTH;
+        float yScale = (float)nHeight/(float)MENU_FRAME_HEIGHT;
+        float xScale = (float)nWidth/(float)MENU_FRAME_WIDTH;
         for(int iter=0;iter<ANIMATIONS_CNT;iter++)
 	    {
         imagesS[iter]=il.scaleI(images[iter],(int)(700*xScale),(int)(500*yScale));

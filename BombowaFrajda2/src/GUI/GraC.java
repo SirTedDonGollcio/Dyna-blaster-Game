@@ -12,94 +12,77 @@ import Game.ObjectCreator;
 import Game.Wall;
 import Game.Bomber;
 import Game.FragileWall;
+import Game.Key;
 import Game.KeyFrame;
 import Game.Spider;
 import Client.Timer;
 import Client.FileOperator;
 import Client.Level;
 import Game.Diamond;
+import Game.Door;
+import Parameters.Dimensions;
 
 public class GraC implements Runnable{
     
-	final int FRAME_WIDTH = 645;
-    final int FRAME_HEIGHT = 810;
-    final int GAME_F_DIM = 645;
-    final int GAME_DIM = 605;
-    final int GAME_START = 20;
-    final int OBJ_DIM = 55;
+	Dimensions p = new Dimensions();
 	
-    FileOperator fo = new FileOperator("levelFile.txt");
-    Timer myTimer = new Timer(1000);
-    ImageLoader il = new ImageLoader();
-    KeyFrame f = new KeyFrame("Bombowa Frajda");
-    JLabel userGUI = new JLabel();
-    HealthBar hb = new HealthBar();
-    BombBar bb = new BombBar();
-    ScoreBar sb = new ScoreBar();
-    TimerBar tb = new TimerBar();
+	final int FRAME_WIDTH = p.FRAME_WIDTH;
+    final int FRAME_HEIGHT = p.FRAME_HEIGHT;
+    final int GAME_F_DIM = p.GAME_F_DIM;
+    final int GAME_DIM = p.GAME_DIM;
+    final int GAME_START = p.GAME_START;
+    final int OBJ_DIM = p.OBJ_DIM;
+	final int BGD_CLR_A = p.BGD_CLR_A;
+	final int BGD_CLR_B = p.BGD_CLR_B;
+	final int BGD_CLR_C = p.BGD_CLR_C;
+	final int FRAME_HEIGHT_GUI= p.FRAME_HEIGHT_GUI;
+	final int WEIRD_X_CONSTANT= p.WEIRD_X_CONSTANT;
+	final int WEIRD_Y_CONSTANT= p.WEIRD_Y_CONSTANT;
+	final int ANOTHER_WEIRD_Y_CONSTANT= p.ANOTHER_WEIRD_Y_CONSTANT;
     
-    BufferedImage image = il.imageL("Images/game_background.png");
-    ImageIcon backgroundIcon = new ImageIcon(image);
-    JLabel gameFrames = new JLabel();
-    JLabel game = new JLabel();
     
-    //tymaczowe dane do kreacji obiektow
-    /*int iloscScian = 25;
-    //int[][] dane = new int[iloscScian][2];
-    int[][] daneW = {{1,1},{3,1},{5,1},{7,1},{9,1},
-    		{1,3},{3,3},{5,3},{7,3},{9,3},
-    		{1,5},{3,5},{5,5},{7,5},{9,5},
-    		{1,7},{3,7},{5,7},{7,7},{9,7},
-    		{1,9},{3,9},{5,9},{7,9},{9,9}};        
-    int iloscFragscian = 53;
-    //int[][] dane = new int[iloscScian][2];
-    int[][] daneF = {{3,0},{7,0},{8,0},
-    				{6,1},
-    				{1,2},{2,2},{3,2},{4,2},{5,2},{6,2},{9,2},{10,2},
-    				{0,3},{2,3},{4,3},{6,3},
-    				{0,4},{1,4},{6,4},{9,4},
-    				{0,5},{6,5},{7,5},
-    				{0,6},{1,6},{2,6},{3,6},{4,6},{8,6},
-    				{0,7},{2,7},{4,7},{6,7},{8,7},{10,7},
-    				{0,8},{1,8},{2,8},{3,8},{4,8},{5,8},{7,8},{8,8},{9,8},{10,8},
-    				{2,9},{4,9},{8,9},{10,9},
-    				{2,10},{3,10},{4,10},{9,10},{10,10},};
-    int iloscPajakow = 5;
-    //int[][] dane = new int[iloscPajakow][2];
-    int[][] daneP = {{5,0},{7,2},{2,4},{5,6},{5,10}};
-    */
-    int[] daneB = {1,0,1,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0};
-    Level level = fo.readLevel();
-    int iloscScian = level.ileScian;
-    int[][] daneW = new int[iloscScian][2];
-    int iloscFragscian = level.ileFragScian;
-    int[][] daneF = new int[iloscFragscian][2];
-    int iloscPajakow = level.ilePajakow;
-    int[][] daneP = new int[iloscPajakow][2];
+    public FileOperator fo = new FileOperator("levelFile.txt");
+    public Timer myTimer = new Timer(1000);
+    public ImageLoader il = new ImageLoader();
+    public KeyFrame f = new KeyFrame("Bombowa Frajda");
+    public JLabel userGUI = new JLabel();
+    public HealthBar hb = new HealthBar();
+    public BombBar bb = new BombBar();
+    public ScoreBar sb = new ScoreBar();
+    public TimerBar tb = new TimerBar();
+    
+    public BufferedImage image = il.imageL("Images/game_background.png");
+    public ImageIcon backgroundIcon = new ImageIcon(image);
+    public JLabel gameFrames = new JLabel();
+    public JLabel game = new JLabel();
+    
+    public Level level = fo.readLevel2("levelFile2.txt");
+    public int iloscScian = level.ileScian;
+    public int[][] daneW = new int[iloscScian][2];
+    public int iloscFragscian = level.ileFragScian;
+    public int[][] daneF = new int[iloscFragscian][2];
+    public int iloscPajakow = level.ilePajakow;
+    public int[][] daneP = new int[iloscPajakow][2];
 
-    Wall walls[] = new Wall[iloscScian];
-    FragileWall fragWalls[] = new FragileWall[iloscFragscian];
-    Spider spiders[] = new Spider[iloscPajakow];
-    Thread[] pajeczaki = new Thread[iloscPajakow];
+    public Wall walls[] = new Wall[iloscScian];
+    public FragileWall fragWalls[] = new FragileWall[iloscFragscian];
+    public Spider spiders[] = new Spider[iloscPajakow];
+    public Thread[] pajeczaki = new Thread[iloscPajakow];
     
-    Bomber bomber;
+    public Bomber bomber;
     
-    Thread kicker = null;
+    public Thread kicker = null;
      
-    JLabel healthBar;
-    JLabel bombBar;
-    JLabel scoreBar;
-    JLabel timerBar;
-    //Level level = new Level(iloscScian,iloscFragscian,iloscPajakow);
+    public JLabel healthBar;
+    public JLabel bombBar;
+    public JLabel scoreBar;
+    public JLabel timerBar;
+    
     
     
     
 	public GraC(){
-		/*level.iloscBomb = bomber.iloscBomb;
-		level.iloscZycia = bomber.iloscZycia;
-		level.pozycjaBomberaX = 0;
-		level.pozycjaBomberaY=0;
-		fo.saveLevel(level);*/
+		
 		
 		for(int iter=0;iter<iloscScian;iter++)
 		{
@@ -116,10 +99,7 @@ public class GraC implements Runnable{
 			daneP[iter][0]=level.daneP[iter][0];
 			daneP[iter][1]=level.daneP[iter][1];
 		}
-		/*//dane od wypadników
-		int iloscDiamentow = 10;
-		int[] daneDiamonds = {1,5,7,10,18,24,31,34,42,51};
-		//koniec danych diamonds*/
+		
 		bomber = new Bomber(level.pozycjaBomberaX,level.pozycjaBomberaY);
 		bomber.iloscBomb = level.iloscBomb;
 		bomber.iloscZycia = level.iloscZycia;
@@ -134,10 +114,10 @@ public class GraC implements Runnable{
 	        public void run() {
 	    (f.ruch = new Thread(f)).start();
         userGUI.setOpaque(true);
-        userGUI.setBackground(new Color(64, 62, 60));
-        userGUI.setBounds(0,0,FRAME_WIDTH,165);
+        userGUI.setBackground(new Color(BGD_CLR_A,BGD_CLR_B,BGD_CLR_C));
+        userGUI.setBounds(0,0,FRAME_WIDTH,FRAME_HEIGHT_GUI);
         
-        gameFrames.setBounds(0, 166, GAME_F_DIM, GAME_F_DIM);
+        gameFrames.setBounds(0, FRAME_HEIGHT_GUI+1, GAME_F_DIM, GAME_F_DIM);
         gameFrames.setIcon(backgroundIcon);
        
         f.add(gameFrames);
@@ -156,7 +136,7 @@ public class GraC implements Runnable{
         gameFrames.add(game);
         
         f.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        f.setBackground(new Color(64, 62, 60));
+        f.setBackground(new Color(BGD_CLR_A, BGD_CLR_B, BGD_CLR_C));
         f.setLocationRelativeTo(null);
         f.game = game;
         
@@ -179,19 +159,16 @@ public class GraC implements Runnable{
         	Spider spider = new Spider(daneP[iter][0],daneP[iter][1]);
         	spiders[iter] = spider;
         	(spiders[iter].kicker= new Thread(spider)).start();
-        	/*try {
-                spiders[iter].kicker.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
-        	//spiders[iter].kicker.run();
+        	
         	game.add(spiders[iter].getLabel());
         }
 
-        for(int iter=0;iter<iloscFragscian-1;iter++)
+        for(int iter=0;iter<iloscFragscian;iter++)
 		{
-			fragWalls[iter].wypadnik = daneB[iter];
+			fragWalls[iter].wypadnik = level.daneB[iter];
 		}
+        
+        spiders[level.monsterKeyNumber].haveKey = true;
         
         game.add(bomber.getLabel());
         f.player = bomber;
@@ -214,6 +191,8 @@ public class GraC implements Runnable{
         bomber.fragWalls = fragWalls;
         bomber.spiders = spiders;
         
+        bomber.iloscBomb = 5;
+        
         updateOffscreenSize();
         EventQueue.invokeLater(() -> f.setVisible(true)); 
         f.addWindowListener(new WindowAdapter() {
@@ -221,11 +200,12 @@ public class GraC implements Runnable{
                 f.ruch=null;
             	f.dispose();
                 kicker = null;
-                for(int iter=0;iter<iloscPajakow;iter++)
+                /*for(int iter=0;iter<iloscPajakow;iter++)
                 {
                 	spiders[iter].kicker = null;
-                }
+                }*/
                 MenuC f1 = new MenuC();
+                //KoniecGry kg = new KoniecGry(bomber.iloscPunktow,tb.stoper.godziny,tb.stoper.minuty,tb.stoper.sekundy);
                 (f1.kicker = new Thread(f1)).start();
             }
         });
@@ -245,19 +225,19 @@ public class GraC implements Runnable{
     		k.interrupt();
     	}
     	
-    	int nWidth = f.getWidth()-16;
-        int nHeight = f.getHeight()-205;
+    	int nWidth = f.getWidth()-WEIRD_X_CONSTANT;
+        int nHeight = f.getHeight()-WEIRD_Y_CONSTANT;
         float yScale = (float)nHeight/((float)GAME_F_DIM);
         float xScale = (float)nWidth/(float)GAME_F_DIM;
         
         userGUI.setBounds(0,0,nWidth,165);
         ImageIcon i1 = new ImageIcon(il.scaleI(image,(int)(GAME_F_DIM*xScale),(int)(GAME_F_DIM*yScale)));
         gameFrames.setIcon(i1);
-        gameFrames.setBounds(0, 165, (int)(GAME_F_DIM*xScale), (int)(GAME_F_DIM*yScale));
+        gameFrames.setBounds(0, FRAME_HEIGHT_GUI, (int)(GAME_F_DIM*xScale), (int)(GAME_F_DIM*yScale));
         game.setBounds((int)(GAME_START*xScale),(int)(GAME_START*yScale),(int)(GAME_DIM*xScale),(int)(GAME_DIM*yScale));
         
-        nWidth = nWidth+16;
-        nHeight = nHeight +40;
+        nWidth = nWidth+WEIRD_X_CONSTANT;
+        nHeight = nHeight +ANOTHER_WEIRD_Y_CONSTANT;
         
         for(int iter = 0; iter <iloscScian;iter++)
         {
@@ -309,6 +289,47 @@ public class GraC implements Runnable{
         	bomber.bombs[iter].lY = nHeight;
         }
         
+        for(int iter = 0; iter<bomber.iloscDiamentowNaMapie;iter++)
+        {
+        	bomber.diamonds[iter].sizeX = (int)(OBJ_DIM*xScale);
+        	bomber.diamonds[iter].sizeY = (int)(OBJ_DIM*yScale);
+        	
+        	bomber.diamonds[iter].posX = (int)(bomber.diamonds[iter].posX*nWidth/bomber.diamonds[iter].lX);
+        	bomber.diamonds[iter].posY = (int)(bomber.diamonds[iter].posY*nHeight/bomber.diamonds[iter].lY);
+        	ImageIcon imageIcon = new ImageIcon(il.scaleI(bomber.diamonds[iter].i,bomber.diamonds[iter].sizeX,bomber.diamonds[iter].sizeY));
+        	bomber.diamonds[iter].getLabel().setIcon(imageIcon);
+        	bomber.diamonds[iter].getLabel().setBounds(bomber.diamonds[iter].posX,bomber.diamonds[iter].posY,bomber.diamonds[iter].sizeX,bomber.diamonds[iter].sizeY);
+        	bomber.diamonds[iter].lX = nWidth;
+        	bomber.diamonds[iter].lY = nHeight;
+        }
+        
+        if(bomber.key!=null)
+        {
+	        bomber.key.sizeX = (int)(OBJ_DIM*xScale);
+	    	bomber.key.sizeY = (int)(OBJ_DIM*yScale);
+	    	
+	    	bomber.key.posX = (int)(bomber.key.posX*nWidth/bomber.key.lX);
+	    	bomber.key.posY = (int)(bomber.key.posY*nHeight/bomber.key.lY);
+	    	ImageIcon imageIcon = new ImageIcon(il.scaleI(bomber.key.i,bomber.key.sizeX,bomber.key.sizeY));
+	    	bomber.key.getLabel().setIcon(imageIcon);
+	    	bomber.key.getLabel().setBounds(bomber.key.posX,bomber.key.posY,bomber.key.sizeX,bomber.key.sizeY);
+	    	bomber.key.lX = nWidth;
+	    	bomber.key.lY = nHeight;
+        }
+        
+        if(bomber.door!=null)
+        {
+	        bomber.door.sizeX = (int)(OBJ_DIM*xScale);
+	    	bomber.door.sizeY = (int)(OBJ_DIM*yScale);
+	    	
+	    	bomber.door.posX = (int)(bomber.door.posX*nWidth/bomber.door.lX);
+	    	bomber.door.posY = (int)(bomber.door.posY*nHeight/bomber.door.lY);
+	    	ImageIcon imageIcon = new ImageIcon(il.scaleI(bomber.door.i,bomber.door.sizeX,bomber.door.sizeY));
+	    	bomber.door.getLabel().setIcon(imageIcon);
+	    	bomber.door.getLabel().setBounds(bomber.door.posX,bomber.door.posY,bomber.door.sizeX,bomber.door.sizeY);
+	    	bomber.door.lX = nWidth;
+	    	bomber.door.lY = nHeight;
+        }
         
         bomber.frontS=il.scaleI(bomber.front, (int)(OBJ_DIM*xScale),(int)(OBJ_DIM*yScale));
         bomber.backS=il.scaleI(bomber.back, (int)(OBJ_DIM*xScale),(int)(OBJ_DIM*yScale));
@@ -350,9 +371,9 @@ public class GraC implements Runnable{
     			
             	f.dispose();
                 
-                
-                MenuC f1 = new MenuC();
-                (f1.kicker = new Thread(f1)).start();
+            	KoniecGry kg = new KoniecGry(bomber.iloscPunktow,tb.stoper.godziny,tb.stoper.minuty,tb.stoper.sekundy);
+                //MenuC f1 = new MenuC();
+                //(f1.kicker = new Thread(f1)).start();
                 f.ruch=null;
                 for(int iter=0;iter<iloscPajakow;iter++)
                 {
@@ -361,7 +382,18 @@ public class GraC implements Runnable{
                 kicker = null;
                 
     		}
-    		
+    		if(bomber.nextLevel)
+    		{
+    			bomber.nextLevel=false;
+    			if(level.nextLevelName=="koniec")
+    			{
+    				KoniecGry kg = new KoniecGry(bomber.iloscPunktow,tb.stoper.godziny,tb.stoper.minuty,tb.stoper.sekundy);
+    			}
+    			else
+    			{
+    			levelChange();
+    			}
+    		}
     		sleeep();
     		//System.out.print(bomber.currentBombs + "\n");
     		if(bomber.direction == 1)
@@ -385,11 +417,12 @@ public class GraC implements Runnable{
     		bomber.l.setIcon(bomber.ii); 
     		//bomber.l.setOpaque(true);
             //bomber.l.setBackground(new Color(64, 62, 60));
-    		bomber.isColD = isColidingDown();
-    		bomber.isColU = isColidingUp();
+
+    		
     		bomber.isColR = isColidingRight();
     		bomber.isColL = isColidingLeft();
-    		
+    		bomber.isColD = isColidingDown();
+    		bomber.isColU = isColidingUp();
         }
     }
     
@@ -404,7 +437,7 @@ public class GraC implements Runnable{
 		boolean b=false;
 		for(int iter=0;iter<iloscScian;iter++)
 		{
-			if(((walls[iter].posY - (bomber.posY+bomber.sizeY) <= 0)&&(walls[iter].posY - (bomber.posY+bomber.sizeY) >= -8*bomber.sizeY/55))&&((((walls[iter].posX+walls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))>0)&&((walls[iter].posX+walls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))<walls[iter].sizeX))||(((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-walls[iter].posX>0)&&((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-walls[iter].posX<walls[iter].sizeX))))
+			if(((bomber.walls[iter].posY - (bomber.posY+bomber.sizeY) <= 0)&&(bomber.walls[iter].posY - (bomber.posY+bomber.sizeY) >= -8*bomber.sizeY/55))&&((((bomber.walls[iter].posX+bomber.walls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))>0)&&((bomber.walls[iter].posX+walls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))<bomber.walls[iter].sizeX))||(((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-bomber.walls[iter].posX>0)&&((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-bomber.walls[iter].posX<bomber.walls[iter].sizeX))))
 			{
 				b=true;
 				//System.out.print("Koliduje na dole od bomber - sciana\n");
@@ -412,7 +445,7 @@ public class GraC implements Runnable{
 		}
 		for(int iter=0;iter<iloscFragscian;iter++)
 		{
-			if(((fragWalls[iter].posY - (bomber.posY+bomber.sizeY) <= 0)&&(fragWalls[iter].posY - (bomber.posY+bomber.sizeY) >= -8*bomber.sizeY/55))&&((((fragWalls[iter].posX+fragWalls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))>0)&&((fragWalls[iter].posX+fragWalls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))<fragWalls[iter].sizeX))||(((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-fragWalls[iter].posX>0)&&((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-fragWalls[iter].posX<fragWalls[iter].sizeX))))
+			if(((bomber.fragWalls[iter].posY - (bomber.posY+bomber.sizeY) <= 0)&&(bomber.fragWalls[iter].posY - (bomber.posY+bomber.sizeY) >= -8*bomber.sizeY/55))&&((((bomber.fragWalls[iter].posX+bomber.fragWalls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))>0)&&((bomber.fragWalls[iter].posX+fragWalls[iter].sizeX)-(bomber.posX+(7*bomber.sizeX/55))<bomber.fragWalls[iter].sizeX))||(((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-bomber.fragWalls[iter].posX>0)&&((bomber.posX + bomber.sizeX-(7*bomber.sizeX/55))-bomber.fragWalls[iter].posX<bomber.fragWalls[iter].sizeX))))
 			{
 				b=true;
 				//System.out.print("Koliduje na dole od bomber - kamien\n");
@@ -560,6 +593,148 @@ public class GraC implements Runnable{
 			//System.out.print("Koliduje na lewo od bomber - granica\n");
 		}
 		return b;
+	}
+	
+	public void levelChange()
+	{
+		bomber.nextLevel = false;
+		SwingUtilities.invokeLater(new Runnable() {
+	        @Override
+	        public void run() {
+		bomber.door.l.setBounds(5000,5000,GAME_DIM,GAME_DIM);
+		sleeep();
+		for(int iter = 0; iter < iloscScian;iter++)
+        {
+        	game.remove(walls[iter].l);
+        }
+        
+        for(int iter = 0;iter<iloscFragscian;iter++)
+        {
+        	game.remove(fragWalls[iter].l);
+        }
+        
+        for(int iter = 0;iter<iloscPajakow;iter++)
+        {
+        	game.remove(spiders[iter].l);
+        }
+		Level level2 = fo.readLevel2(level.nextLevelName);
+		//System.out.println(level.nextLevelName);
+	    iloscScian = level2.ileScian;
+	    daneW = new int[iloscScian][2];
+	    iloscFragscian = level2.ileFragScian;
+	    daneF = new int[iloscFragscian][2];
+	    iloscPajakow = level2.ilePajakow;
+	    daneP = new int[iloscPajakow][2];
+
+	    walls = new Wall[iloscScian];
+	    fragWalls = new FragileWall[iloscFragscian];
+	    spiders = new Spider[iloscPajakow];
+	    pajeczaki = new Thread[iloscPajakow];
+	    
+		gameFrames.remove(game);
+		game = new JLabel();
+    	game.setBounds(GAME_START,GAME_START, GAME_DIM, GAME_DIM);
+        gameFrames.add(game);
+        
+		bomber.door.kicker=null;
+		/*for(int iter=0;iter<bomber.iloscPajakow;iter++)
+		{
+			bomber.spiders[iter].kicker=null;
+		}
+		for(int iter=0;iter<bomber.iloscDiamentowNaMapie;iter++)
+		{
+			bomber.diamonds[iter].kicker=null;
+		}*/
+		
+		bomber.diamonds = new Diamond[121];
+		bomber.iloscDiamentowNaMapie=0;
+		bomber.key=null;
+		bomber.door=null;
+		bomber.czyMamKlucz = false;
+		for(int iter=0;iter<iloscScian;iter++)
+		{
+			daneW[iter][0]=level2.daneW[iter][0];
+			daneW[iter][1]=level2.daneW[iter][1];
+		}
+		for(int iter=0;iter<iloscFragscian;iter++)
+		{
+			daneF[iter][0]=level2.daneF[iter][0];
+			daneF[iter][1]=level2.daneF[iter][1];
+		}
+		for(int iter=0;iter<iloscPajakow;iter++)
+		{
+			daneP[iter][0]=level2.daneP[iter][0];
+			daneP[iter][1]=level2.daneP[iter][1];
+		}
+		
+		
+	        	
+	            f.game = game;
+	            
+	            for(int iter = 0; iter < iloscScian;iter++)
+	            {
+	            	Wall wall = new Wall(daneW[iter][0],daneW[iter][1]);
+	            	walls[iter] = wall;
+	            	game.add(walls[iter].getLabel());
+	            }
+	            
+	            for(int iter = 0;iter<iloscFragscian;iter++)
+	            {
+	            	FragileWall fragileWall = new FragileWall(daneF[iter][0],daneF[iter][1]);
+	            	fragWalls[iter] = fragileWall;
+	            	game.add(fragWalls[iter].getLabel());
+	            }
+	            
+	            for(int iter = 0;iter<iloscPajakow;iter++)
+	            {
+	            	Spider spider = new Spider(daneP[iter][0],daneP[iter][1]);
+	            	spiders[iter] = spider;
+	            	(spiders[iter].kicker= new Thread(spider)).start();
+	            	/*try {
+	                    spiders[iter].kicker.join();
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                }*/
+	            	//spiders[iter].kicker.run();
+	            	game.add(spiders[iter].getLabel());
+	            }
+
+	            for(int iter=0;iter<iloscFragscian;iter++)
+	    		{
+	    			fragWalls[iter].wypadnik = level2.daneB[iter];
+	    		}
+	            
+	            spiders[level2.monsterKeyNumber].haveKey = true;
+	            
+	            bomber.posX = (1+level2.pozycjaBomberaX)*55*gameFrames.getWidth()/645;
+	            bomber.posY = (1+level2.pozycjaBomberaY)*55*gameFrames.getHeight()/645;
+	            game.add(bomber.getLabel());
+	            bomber.lX = f.getWidth();
+	            bomber.lY = f.getHeight();
+	            
+
+	            for(int iter = 0;iter<iloscPajakow;iter++)
+	            {
+	            	spiders[iter].walls = walls;
+	            	spiders[iter].fragileWalls = fragWalls;
+	            	spiders[iter].spiders = spiders;
+	            	spiders[iter].player = bomber;
+	            }
+	            
+	            bomber.iloscScian = iloscScian;
+	            bomber.iloscFragScian = iloscFragscian;
+	            bomber.iloscPajakow = iloscPajakow;
+	            bomber.walls = walls;
+	            bomber.fragWalls = fragWalls;
+	            bomber.spiders = spiders;
+	            
+	            updateOffscreenSize();
+	            EventQueue.invokeLater(() -> f.setVisible(true));
+	            level = level2;
+	        }
+	        
+		});
+		
 	}
 	
 }

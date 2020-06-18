@@ -19,6 +19,7 @@ public class Spider  extends ObjectCreator implements Runnable{
 	public BufferedImage left = il.imageL("Images/spiderL.png");
 	public BufferedImage right = il.imageL("Images/spiderR.png");
 	public int speed=3;
+	public boolean haveKey=false;
 	
 	public Spider(int x, int y) {
 		tempX=x;

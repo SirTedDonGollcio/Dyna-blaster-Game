@@ -9,8 +9,39 @@ import javax.swing.*;
 import java.awt.event.*;
 import GUI.ImageLoader;
 import Game.Bomber;
+import Parameters.Dimensions;
 
 public class BombBar extends JLabel implements Runnable{
+	
+	Dimensions p = new Dimensions();
+	
+	final int BOMBBAR_X_MAIN = p.BOMBBAR_X_MAIN;
+	final int BOMBBAR_Y_MAIN = p.BOMBBAR_Y_MAIN;
+	final int BOMBBAR_SX_MAIN = p.BOMBBAR_SX_MAIN;
+	final int BOMBBAR_SY_MAIN = p.BOMBBAR_SY_MAIN;
+	final int BOMBBAR_X_B1 = p.BOMBBAR_X_B1;
+	final int BOMBBAR_Y_B1 = p.BOMBBAR_Y_B1;
+	final int BOMBBAR_SX_B1 = p.BOMBBAR_SX_B1;
+	final int BOMBBAR_SY_B1 = p.BOMBBAR_SY_B1;
+	final int BOMBBAR_X_B2 = p.BOMBBAR_X_B2;
+	final int BOMBBAR_Y_B2 = p.BOMBBAR_Y_B2;
+	final int BOMBBAR_SX_B2 = p.BOMBBAR_SX_B2;
+	final int BOMBBAR_SY_B2 = p.BOMBBAR_SY_B2;
+	final int BOMBBAR_X_B3 = p.BOMBBAR_X_B3;
+	final int BOMBBAR_Y_B3 = p.BOMBBAR_Y_B3;
+	final int BOMBBAR_SX_B3 = p.BOMBBAR_SX_B3;
+	final int BOMBBAR_SY_B3 = p.BOMBBAR_SY_B3;
+	final int BOMBBAR_X_B4 = p.BOMBBAR_X_B4;
+	final int BOMBBAR_Y_B4 = p.BOMBBAR_Y_B4;
+	final int BOMBBAR_SX_B4 = p.BOMBBAR_SX_B4;
+	final int BOMBBAR_SY_B4 = p.BOMBBAR_SY_B4;
+	final int BOMBBAR_X_B5 = p.BOMBBAR_X_B5;
+	final int BOMBBAR_Y_B5 = p.BOMBBAR_Y_B5;
+	final int BOMBBAR_SX_B5 = p.BOMBBAR_SX_B5;
+	final int BOMBBAR_SY_B5 = p.BOMBBAR_SY_B5;
+	
+	
+	
 	JLabel bb = new JLabel();
 	ImageLoader il = new ImageLoader();
 	JLabel b1 = new JLabel();
@@ -29,12 +60,12 @@ public class BombBar extends JLabel implements Runnable{
 	        public void run() {
 		BufferedImage ib1 = il.imageL("Images/bomb.png");
         ImageIcon i1 = new ImageIcon(ib1);
-        bb.setBounds(20, 95, 335, 55);
-        b1.setBounds(10,0,55,55);
-        b2.setBounds(75,0,55,55);
-        b3.setBounds(140,0,55,55);
-        b4.setBounds(205,0,55,55);
-        b5.setBounds(270,0,55,55);
+        bb.setBounds(BOMBBAR_X_MAIN,BOMBBAR_Y_MAIN,BOMBBAR_SX_MAIN,BOMBBAR_SY_MAIN);
+        b1.setBounds(BOMBBAR_X_B1,BOMBBAR_Y_B1,BOMBBAR_SX_B1,BOMBBAR_SY_B1);
+        b2.setBounds(BOMBBAR_X_B2,BOMBBAR_Y_B2,BOMBBAR_SX_B2,BOMBBAR_SY_B2);
+        b3.setBounds(BOMBBAR_X_B3,BOMBBAR_Y_B3,BOMBBAR_SX_B3,BOMBBAR_SY_B3);
+        b4.setBounds(BOMBBAR_X_B4,BOMBBAR_Y_B4,BOMBBAR_SX_B4,BOMBBAR_SY_B4);
+        b5.setBounds(BOMBBAR_X_B5,BOMBBAR_Y_B5,BOMBBAR_SX_B5,BOMBBAR_SY_B5);
         b1.setIcon(i1);
         b2.setIcon(i1);
         b3.setIcon(i1);

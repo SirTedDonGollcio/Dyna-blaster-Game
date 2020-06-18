@@ -7,6 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Scanner;
 
 import Client.ScorePerson;
 import Client.ScoreList;
@@ -61,7 +68,7 @@ public class FileOperator {
 			i = new ObjectInputStream(fi);
 			int ile = i.readInt();
 			
-			scoreList = new ScoreList(ile);
+			scoreList = new ScoreList(ile+5);
 
 			for(int iter=0;iter<ile;iter++)
 			{
@@ -81,7 +88,7 @@ public class FileOperator {
 		
 		return scoreList;
 	}
-	public void saveLevel(Level level)
+	public void saveLevel(Level level,String path)
 	{
 		try {
 			fo = new FileOutputStream(new File(path));
@@ -124,10 +131,11 @@ public class FileOperator {
 		}
 	}
 	
-	public Level readLevel()
+	public Level readLevel(String path)
 	{
 		Level level = new Level(1,1,1);
 		try {
+			
 			fi = new FileInputStream(new File(path));
 			i = new ObjectInputStream(fi);
 			int iScian = i.readInt();
@@ -159,6 +167,57 @@ public class FileOperator {
 
 			i.close();
 			fi.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		} catch (IOException e) {
+			System.out.println("Error initializing stream");
+		} 
+		
+		return level;
+	}
+	
+	public Level readLevel2(String pathName)
+	{
+		Level level = new Level(1,1,1);
+		try {
+			Path path = Paths.get(pathName);
+	        Scanner scanner = new Scanner(path);
+	        
+			int iScian = scanner.nextInt();
+			int iFragScian = scanner.nextInt();
+			int iPajakow = scanner.nextInt();
+			
+			level = new Level(iScian,iFragScian,iPajakow);
+			
+			for(int iter=0;iter<iScian;iter++)
+			{
+				level.daneW[iter][0]=scanner.nextInt();
+				level.daneW[iter][1]=scanner.nextInt();
+			}
+			for(int iter=0;iter<iFragScian;iter++)
+			{
+				level.daneF[iter][0]=scanner.nextInt();
+				level.daneF[iter][1]=scanner.nextInt();
+			}
+			for(int iter=0;iter<iPajakow;iter++)
+			{
+				level.daneP[iter][0]=scanner.nextInt();
+				level.daneP[iter][1]=scanner.nextInt();
+			}
+			
+			level.pozycjaBomberaX = scanner.nextInt();
+			level.pozycjaBomberaY = scanner.nextInt();
+			level.iloscZycia = scanner.nextInt();
+			level.iloscBomb = scanner.nextInt();
+			for(int iter=0;iter<iFragScian;iter++)
+			{
+				level.daneB[iter]=scanner.nextInt();
+			}
+			level.monsterKeyNumber = scanner.nextInt();
+			scanner.nextLine();
+			level.nextLevelName=scanner.nextLine();
+			scanner.close();
 
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");

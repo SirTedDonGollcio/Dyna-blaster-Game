@@ -24,6 +24,7 @@ public class Bomber extends ObjectCreator{
 	public int iloscZycia = 5;
 	public int iloscBomb = 3;
 	public int iloscPunktow = 0;
+	public boolean czyMamKlucz = false;
 	public int currentBombs = 0;
 	public Bomb[] bombs = new Bomb[5];
 	public int bombSizeX=55;
@@ -40,6 +41,7 @@ public class Bomber extends ObjectCreator{
 	public boolean isColU = false;
 	public boolean isColR = false;
 	public boolean isColL = false;
+	public boolean nextLevel = false;
 	public int iloscScian;
 	public int iloscFragScian;
 	public int iloscPajakow;
@@ -48,6 +50,8 @@ public class Bomber extends ObjectCreator{
 	public Spider spiders[];
 	public Diamond diamonds[];
 	public int iloscDiamentowNaMapie=0;
+	public Key key=null;
+	public Door door=null;
 	
 	public Bomber(int x, int y) {
 		

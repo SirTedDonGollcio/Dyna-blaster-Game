@@ -9,8 +9,25 @@ import javax.swing.*;
 import java.awt.event.*;
 import GUI.ImageLoader;
 import Game.Bomber;
+import Parameters.Dimensions;
 
 public class ScoreBar extends JLabel implements Runnable{
+	
+	Dimensions p = new Dimensions();
+	
+	final int SCOREBAR_X_MAIN=p.SCOREBAR_X_MAIN;
+	final int SCOREBAR_Y_MAIN=p.SCOREBAR_Y_MAIN;
+	final int SCOREBAR_XS_MAIN=p.SCOREBAR_XS_MAIN;
+	final int SCOREBAR_YS_MAIN=p.SCOREBAR_YS_MAIN;
+	final int SCOREBAR_X_ST=p.SCOREBAR_X_ST;
+	final int SCOREBAR_Y_ST=p.SCOREBAR_Y_ST;
+	final int SCOREBAR_XS_ST=p.SCOREBAR_XS_ST;
+	final int SCOREBAR_YS_ST=p.SCOREBAR_YS_ST;
+	final int SCOREBAR_X_VAR=p.SCOREBAR_X_VAR;
+	final int SCOREBAR_Y_VAR=p.SCOREBAR_Y_VAR;
+	final int SCOREBAR_XS_VAR=p.SCOREBAR_XS_VAR;
+	final int SCOREBAR_YS_VAR=p.SCOREBAR_YS_VAR;
+	
 	public Bomber bomber;
 	public Thread kicker = null;
 	JLabel stable = new JLabel("Score: ");
@@ -27,9 +44,9 @@ public class ScoreBar extends JLabel implements Runnable{
 	    stable.setForeground(Color.WHITE);
 	    variable.setFont(new Font("System", Font.PLAIN, 48));
 	    variable.setForeground(Color.WHITE);
-	    sb.setBounds(370,20,350,100);
-        stable.setBounds(0, 0, 170, 50);
-        variable.setBounds(150,0,150,50);
+	    sb.setBounds(SCOREBAR_X_MAIN,SCOREBAR_Y_MAIN,SCOREBAR_XS_MAIN,SCOREBAR_YS_MAIN);
+        stable.setBounds(SCOREBAR_X_ST,SCOREBAR_Y_ST,SCOREBAR_XS_ST,SCOREBAR_YS_ST);
+        variable.setBounds(SCOREBAR_X_VAR,SCOREBAR_Y_VAR,SCOREBAR_XS_VAR,SCOREBAR_YS_VAR);
         stable.setText("Score: ");
         sb.add(stable);
         sb.add(variable);
