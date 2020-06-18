@@ -35,7 +35,9 @@ Dimensions p = new Dimensions();
     JLabel variable = new JLabel("0");
     JLabel tb = new JLabel();
     Stoper stoper = new Stoper();
-        
+     /*
+      * Klasa odpowiedzialna za wyswietlanie czasu rozgrywki na ekranie rozgrywki na nieskalowalnym pasku interfejsu   
+      */
 	JLabel timerBar(Bomber bomber) {
 		this.bomber = bomber;
 		

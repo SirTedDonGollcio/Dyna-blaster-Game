@@ -14,6 +14,9 @@ import java.net.Socket;
 import GUI.MenuC;
 public class Main {
     public static void main(String[] args){
+    	/*
+    	 * W funkcji main program jako pierwszy uruchamia okno Menu z wyborem dalszych operacji
+    	 */
         MenuC guiWindow = new MenuC();
         (guiWindow.kicker = new Thread(guiWindow)).start();
     }

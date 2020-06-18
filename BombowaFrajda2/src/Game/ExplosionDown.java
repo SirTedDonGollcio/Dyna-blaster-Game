@@ -10,7 +10,9 @@ public class ExplosionDown extends ObjectCreator implements Runnable{
 	public JLabel game;
 	Bomber player;
 	public int yBound;
-	
+	/*
+	 * Klasa odpowiedzialna za rozrastanie siê wybuchu w dó³
+	 */
 	public ExplosionDown(int x,int y,int sX,int sY,Bomber bombi,int maxHeight,JLabel game)
 	{
 		this.game = game;

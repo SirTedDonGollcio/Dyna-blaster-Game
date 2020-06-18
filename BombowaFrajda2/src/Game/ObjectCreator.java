@@ -22,7 +22,9 @@ public class ObjectCreator {
 	public int posY;
 	public int tempX;
 	public int tempY;
-	
+	/*
+	 * Klasa abstrakcyjna s³u¿¹ca jako klasa -rodzic dla wszystkich obiuektów pojawiaj¹cych siê na ekranie
+	 */
 	public JLabel getLabel()
 	{
 		return l;

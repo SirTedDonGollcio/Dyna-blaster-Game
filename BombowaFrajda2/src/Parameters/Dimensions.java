@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import Client.FileOperator;
-
+/*
+ * Klasa przechowuj¹ca wszystkie parametry wymiarów i umiejscowienia obiektów, jaki i ró¿ne inne paramtry otrzymywane z pliku konfiguracyjknego. klasa ta definiuje w jakiej kolejnoœci interpretowaæ dane z pliku konfiguracyjnego.
+ */
 public class Dimensions {
 	
 	public int FRAME_WIDTH;

@@ -8,7 +8,9 @@ public class Key extends ObjectCreator implements Runnable{
 	public int lX=645;
 	public int lY=645;
 	public Thread kicker = null;
-	
+	/*
+	 * Klasa odpowiadaj¹ca za obiekt klucza, oraz nas³uchuj¹ca czy gracz znajduje siê w jego wspó³rzêdnych aby móc go podnieœæ
+	 */
 	public Key(int x, int y,Bomber bomber) {
 		
 		posX=x;

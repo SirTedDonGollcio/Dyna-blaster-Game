@@ -3,7 +3,9 @@ package Client;
 import Game.Wall;
 import Game.FragileWall;
 import Game.Spider;
-
+/*
+ * Klasa s³u¿aca do przechowywania danych potrzebnych do stworzenia poziomu
+ */
 public class Level {
 	public int ileScian;
 	public int ileFragScian;

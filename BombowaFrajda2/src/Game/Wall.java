@@ -10,7 +10,9 @@ import javax.swing.*;
 import Game.ObjectCreator;
 
 public class Wall extends ObjectCreator{
-	
+	/*
+	 * Klasa opisuj¹ca œcianê która jest rozmiaru podstawowego obiektu ale nie jest do zniszczenia przez gracza.
+	 */
 	public Wall(int x, int y) {
 	tempX=x;
 	tempY=y;

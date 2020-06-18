@@ -10,7 +10,9 @@ import java.awt.event.*;
 import Parameters.Dimensions;
 
 public class SterowanieC implements Runnable{
-	
+	/*
+	 * Klasa odpowiedzialna za okno wyœwietlaj¹ce sterowanie w grze
+	 */
 	Dimensions p = new Dimensions();
 	
 	final int SS_FRAME_WIDTH = p.SS_FRAME_WIDTH ;

@@ -20,6 +20,10 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
 	public Thread ruch = null;
 	public int ruchFlag;
 	public JLabel game;
+	/*
+	 * Klasa jest rozszerzeniem podstawowego JFrame'a, który to ³¹czy wszystkiego jego funkcje z 
+	 * nas³uchiwaniem klawiszy s³u¿acymi do sterowania w grze
+	 */
 	public KeyFrame(String s)
 	{
 		super(s);
@@ -31,20 +35,27 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
 	public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
+        /*
+         * Klawisz A powoduje poruszanie siê w lewo
+         */
         if (key == KeyEvent.VK_A) {
         	
         	player.direction = 1;
         	direction = 1;
         	ruchFlag=1;
         }
-
+        /*
+         * Klawisz D powoduje poruszanie siê w prawo
+         */
         if (key == KeyEvent.VK_D) {
         	
         	player.direction = 2;
         	direction = 2;
         	ruchFlag=1;
         }
-
+        /*
+         * Klawisz W powoduje poruszanie siê w góre
+         */
         if (key == KeyEvent.VK_W) {
         	
         	player.direction = 3;
@@ -53,7 +64,9 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
         	
 
         }
-
+        /*
+         * Klawisz S powoduje poruszanie siê w dó³
+         */
         if (key == KeyEvent.VK_S) {
         	
         	player.direction = 4;
@@ -61,6 +74,9 @@ public class KeyFrame extends JFrame implements KeyListener, Runnable{
         	ruchFlag=1;
 
         }
+        /*
+         * Klawisz Spacja powoduje stworzenie w wspó³rzednych gracza bomby
+         */
         if (key == KeyEvent.VK_SPACE) {
         	
         	if(player.currentBombs<player.iloscBomb)

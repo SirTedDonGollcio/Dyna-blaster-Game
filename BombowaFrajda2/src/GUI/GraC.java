@@ -21,7 +21,10 @@ import Client.Level;
 import Game.Diamond;
 import Game.Door;
 import Parameters.Dimensions;
-
+import Animations.BomberAnim;
+/*
+ * Klasa okna g³ównego rozgrywki na którym jest wszytstko wyœwitlane
+ */
 public class GraC implements Runnable{
     
 	Dimensions p = new Dimensions();
@@ -191,7 +194,9 @@ public class GraC implements Runnable{
         bomber.fragWalls = fragWalls;
         bomber.spiders = spiders;
         
-        bomber.iloscBomb = 5;
+        //bomber.iloscBomb = 5;
+        BomberAnim ba = new BomberAnim(f,bomber);
+        (ba.kicker = new Thread(ba)).start();
         
         updateOffscreenSize();
         EventQueue.invokeLater(() -> f.setVisible(true)); 
@@ -396,7 +401,7 @@ public class GraC implements Runnable{
     		}
     		sleeep();
     		//System.out.print(bomber.currentBombs + "\n");
-    		if(bomber.direction == 1)
+    		/*if(bomber.direction == 1)
     		{
     			bomber.i=bomber.leftS;
     		}
@@ -414,7 +419,7 @@ public class GraC implements Runnable{
     		}
     		
     		bomber.ii = new ImageIcon(bomber.i);
-    		bomber.l.setIcon(bomber.ii); 
+    		bomber.l.setIcon(bomber.ii); */
     		//bomber.l.setOpaque(true);
             //bomber.l.setBackground(new Color(64, 62, 60));
 

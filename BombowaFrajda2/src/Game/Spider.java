@@ -20,7 +20,9 @@ public class Spider  extends ObjectCreator implements Runnable{
 	public BufferedImage right = il.imageL("Images/spiderR.png");
 	public int speed=3;
 	public boolean haveKey=false;
-	
+	/*
+	 * Klasa opisuj¹ca paj¹ki, które to poruszaj¹ siê zawsze w lewo i prawo dopóki nie odbij¹ siê od jakiejœ sta³ej powiezchni. Dodtyk paj¹ka skutkuje zmniejszeniem siê zycia gracza
+	 */
 	public Spider(int x, int y) {
 		tempX=x;
 		tempY=y;

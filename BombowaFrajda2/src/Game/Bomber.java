@@ -52,7 +52,10 @@ public class Bomber extends ObjectCreator{
 	public int iloscDiamentowNaMapie=0;
 	public Key key=null;
 	public Door door=null;
-	
+	/*
+	 * Klasa opisuj¹ca postac grywaln¹ - bombera.
+	 * Posiada takie parametry jak pozycja,rozmiar oraz szybkoœæ poruszania siê
+	 */
 	public Bomber(int x, int y) {
 		
 		//l= new KeyLabel();

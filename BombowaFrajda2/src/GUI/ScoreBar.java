@@ -33,7 +33,9 @@ public class ScoreBar extends JLabel implements Runnable{
 	JLabel stable = new JLabel("Score: ");
     JLabel variable = new JLabel("0");
     JLabel sb = new JLabel();
-        
+       /*
+        * Klasa opowiedzialna za wyœwietlanie aktualnego wyniku podczas rozgrywki na pasku nieskalowalnego interfejsu
+        */
 	JLabel scoreBar(Bomber bomber) {
 		this.bomber = bomber;
 		

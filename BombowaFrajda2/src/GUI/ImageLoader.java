@@ -10,7 +10,9 @@ import javax.swing.*;
 
 public class ImageLoader {
 	
-	
+	/*
+	 * Klasa s³u¿¹ca do przechowywania róznych funkcji, takich jak ³adowanie obrazów jak i skalowanie ich do podanych wparametrach wymiarów
+	 */
 	
 	public BufferedImage imageL(String imageLocation){
 		

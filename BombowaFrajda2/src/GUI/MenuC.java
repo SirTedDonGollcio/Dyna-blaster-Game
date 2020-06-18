@@ -53,7 +53,9 @@ public class MenuC implements Runnable{
     BufferedImage imagesS[] = new BufferedImage[ANIMATIONS_CNT];
 		
     private int flag=0;
-    
+    /*
+     * Klasa odpowiedzlana za wyœwietlanie okna Menu, daj¹ca mo¿liwoœæ przejœcia do rozgrywki, sterowania i najlepszych wyników, jak i do wyjœcia z programu
+     */
 	public MenuC(){
 		SwingUtilities.invokeLater(new Runnable() {
 		@Override

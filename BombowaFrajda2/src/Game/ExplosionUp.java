@@ -9,7 +9,9 @@ public class ExplosionUp extends ObjectCreator implements Runnable{
 	public boolean isEnded=false;
 	public JLabel game;
 	Bomber player;
-	
+	/*
+	 * Klasa odpowiedzialna za rozrastanie siê wubuchu w góre
+	 */
 	public ExplosionUp(int x,int y,int sX,int sY,Bomber bombi,JLabel game)
 	{
 		this.game = game;

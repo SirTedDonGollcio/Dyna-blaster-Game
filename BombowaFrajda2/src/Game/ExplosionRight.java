@@ -10,7 +10,9 @@ public class ExplosionRight extends ObjectCreator implements Runnable{
 	public JLabel game;
 	Bomber player;
 	public int xBound;
-	
+	/*
+	 * Klasa odpowiedzialna za rozrastanie siê wybuchu w prawo
+	 */
 	public ExplosionRight(int x,int y,int sX,int sY,Bomber bombi, int maxWidth,JLabel game)
 	{
 		this.game = game;

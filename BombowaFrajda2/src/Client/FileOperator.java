@@ -29,13 +29,17 @@ public class FileOperator {
 	ObjectOutputStream o;
 	FileInputStream fi;
 	ObjectInputStream i;
-	
+	/*
+	 * Klasa przechowuj¹ca funkcje s³u¿¹ce do operacji na plikach.
+	 */
 	public FileOperator(String path)
 	{
 		this.path = path;
 		
 	}
-	
+	/*
+	 * Funkcja s³u¿¹ca do zapisu listy rekordzistów do pliku txt
+	 */
 	public void saveScore(ScoreList list)
 	{
 		try {
@@ -60,6 +64,9 @@ public class FileOperator {
 		} 
 		
 	}
+	/*
+	 * Funkcja s³u¿aca do odczytu tablicy rekordów z pliku txt
+	 */
 	public ScoreList readScore()
 	{
 		ScoreList scoreList = new ScoreList(1);
@@ -88,6 +95,9 @@ public class FileOperator {
 		
 		return scoreList;
 	}
+	/*
+	 * Funkcja pomocnicza s³u¿¹ca do zapisywania w pliku txt plansz wpisanych w kodzie wwczeniej w celu ich pózniejszego usuniêcia.
+	 */
 	public void saveLevel(Level level,String path)
 	{
 		try {
@@ -130,7 +140,9 @@ public class FileOperator {
 			System.out.println("Error initializing stream");
 		}
 	}
-	
+	/*
+	 * Funkcja archaiczna pozosta³a w programie, s³u¿aca do odczytu danych do konstrukcji poziomów z pliku txt
+	 */
 	public Level readLevel(String path)
 	{
 		Level level = new Level(1,1,1);
@@ -176,7 +188,9 @@ public class FileOperator {
 		
 		return level;
 	}
-	
+	/*
+	 * Akturlnie dzia³aj¹ca funkcja do odczytu danych do konstrukcji poziomu z pliku txt
+	 */
 	public Level readLevel2(String pathName)
 	{
 		Level level = new Level(1,1,1);

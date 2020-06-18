@@ -5,6 +5,9 @@ public class Timer implements Runnable{
 	public int flag=0;
 	public int duration;
 	public boolean startuj=false;
+	/*
+	 * Klasa pozwalaj¹ca na odmierzenie okreœlonego w parametrze czasu w milisekundach
+	 */
 	public Timer(int d)
 	{
 		duration = d;

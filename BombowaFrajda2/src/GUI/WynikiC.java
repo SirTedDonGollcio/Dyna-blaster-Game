@@ -40,7 +40,9 @@ public class WynikiC implements Runnable{
     public JScrollPane scroll;
     public FileOperator fo = new FileOperator("recordFiles.txt");
     Thread kicker = null;
-    
+    /*
+     * Klasa odpowiedzialna za okno wyœiwtlaj¹ce najlepsze wyniki
+     */
 	public WynikiC(){
     	
 		/*ScoreList scoreList = new ScoreList(3);

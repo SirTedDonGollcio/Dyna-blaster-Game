@@ -8,7 +8,9 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.Serializable;
-
+/*
+ * Klasa przechowuj¹ca dane po ukoñczeniu rozgrywki: nick gracza, iloœc punktów, czas gry
+ */
 public class ScorePerson implements Serializable{
 	
 	public int id;

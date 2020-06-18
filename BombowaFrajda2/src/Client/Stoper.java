@@ -5,6 +5,10 @@ public class Stoper implements Runnable{
 	public int godziny=0;
 	public int minuty=0;
 	public int sekundy=0;
+	
+	/*
+	 * Klasa pozwalaj¹ca odliczaæ czas w formie stopera
+	 */
 	public Stoper()
 	{
 		(this.kicker= new Thread(this)).start();

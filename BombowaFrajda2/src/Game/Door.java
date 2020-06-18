@@ -8,7 +8,9 @@ public class Door extends ObjectCreator implements Runnable{
 	public int lX=645;
 	public int lY=645;
 	public Thread kicker = null;
-	
+	/*
+	 * Klasa mówi¹ca gdzie i jak du¿e s¹ drzwi po znalezieniu ich pod ktoryms z kamieni - pozwala na przejscie przez nie dopiero po podniesieniu klucza
+	 */
 	public Door(int x, int y,Bomber bomber) {
 		
 		posX=x;

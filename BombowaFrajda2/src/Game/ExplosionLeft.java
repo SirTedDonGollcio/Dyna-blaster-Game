@@ -10,7 +10,9 @@ public class ExplosionLeft extends ObjectCreator implements Runnable{
 	public JLabel game;
 	Bomber player;
 	
-	
+	/*
+	 * Klasa odpowiedzialna za rozrastanie siê wybuchu w lewo
+	 */
 	public ExplosionLeft(int x,int y,int sX,int sY,Bomber bombi,JLabel game)
 	{
 		this.game = game;

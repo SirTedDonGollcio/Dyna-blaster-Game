@@ -20,6 +20,9 @@ public class Explosion extends ObjectCreator implements Runnable{
 	public ExplosionRight eRight;
 	public int zmniejsznikX;
 	public int zmniejsznikY;
+	/*
+	 * Klasa odpowiadaj¹ca za rozrastanie siê poszczególnych odnóg wybuchu, jest jego centrum i od niego wybuch rozrasta siê w góre dó³ prawo i lewo
+	 */
 	public Explosion(int x,int y,Bomber player,JLabel game)
 	{
 		zmniejsznikX = player.bombSizeX/5;

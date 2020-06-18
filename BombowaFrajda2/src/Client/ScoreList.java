@@ -8,7 +8,9 @@ import javax.imageio.*;
 import javax.swing.*;
 import java.awt.event.*;
 import Client.ScorePerson;
-
+/*
+ * klasa s³u¿¹ca do przechowywania wielu rekordów w formie listy
+ */
 public class ScoreList {
 	public int howMany = 0;
 	public int howManyMax;
@@ -23,6 +25,9 @@ public class ScoreList {
 		first=null;
 		last = null;
 	}
+	/*
+	 * Funkcja s³u¿¹ca doodawania kolejnego najlepszego wyniku do listy
+	 */
 	public void addToList(ScorePerson newPerson)
 	{		
 		scorePeople[howMany] = newPerson;
@@ -38,6 +43,9 @@ public class ScoreList {
 		}
 		howMany++;
 	}
+	/*
+	 * Funkcja s³u¿¹ca do sortowania najlepszych wyników wzglêdem zdobytych punktów
+	 */
 	public void sortList()
 	{
 		int posortowane =1;

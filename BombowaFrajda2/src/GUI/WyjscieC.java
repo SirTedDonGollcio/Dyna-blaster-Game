@@ -38,7 +38,9 @@ public class WyjscieC implements Runnable{
     Button b2 = new Button("Nie");
     
     public Thread kicker = null;
-	
+	/*
+	 * Klasa opowiedzialna za okno z zapytaniem potwierdzenia wyjscia  z programu
+	 */
 	public WyjscieC(Frame fx,Thread tempKick){
     	
         

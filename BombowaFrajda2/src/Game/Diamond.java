@@ -8,7 +8,11 @@ public class Diamond extends ObjectCreator implements Runnable{
 	public int lX=645;
 	public int lY=645;
 	public Thread kicker = null;
-	
+	/*
+	 * Klasa opisuj¹ca diamenty które wypdaj¹ z kamieni,
+	 *  oraz nas³uchiwacz akcji który pilnuje czy gracz znajduje
+	 *   siê w ich polu umozliwiaj¹c zebranie ich oraz zwi¹zane z nimi punktami
+	 */
 	public Diamond(int x, int y,Bomber bomber) {
 		
 		posX=x;

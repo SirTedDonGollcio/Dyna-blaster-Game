@@ -18,7 +18,9 @@ public class Bomb extends ObjectCreator implements Runnable{
 	public Explosion explosion;
 	public int lX=645;
 	public int lY=645;
-	
+	/*
+	 * Klasa opisuj¹ca stawiane przez gracza bomby, które po okreœlonym czasie eksploduj¹
+	 */
 	public Bomb(int x, int y,Bomber player,JLabel game) {
 		this.game = game;
 		this.player = player;

@@ -72,7 +72,9 @@ public class KoniecGry implements Runnable{
     Button b2 = new Button("Anuluj");
     
     public Thread kicker = null;
-	
+	/*
+	 * Okno wyœwietlaj¹ce siê po ukoñczeniu rozgrywki, pozwalaj¹ce zapisaæ swój zapis w liœcie rekordów
+	 */
 	public KoniecGry(int points,int godziny,int minuty,int sekundy){
     	
         

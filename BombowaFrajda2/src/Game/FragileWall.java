@@ -12,7 +12,9 @@ import Game.ObjectCreator;
 public class FragileWall extends ObjectCreator{
 	
 	public int wypadnik=0;
-	
+	/*
+	 * Klasa odpowiedzialna za kruche œciany,tj. œciany które gracz mo¿e uszkodziæ oraz znalezc ró¿ne obiekty pod nimi
+	 */
 	public FragileWall(int x, int y) {
 		tempX=x;
 		tempY=y;

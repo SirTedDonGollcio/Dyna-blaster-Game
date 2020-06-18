@@ -10,7 +10,9 @@ import java.awt.event.*;
 import GUI.ImageLoader;
 import Game.Bomber;
 import Parameters.Dimensions;
-
+/*
+ * klasa s³u¿aca do wyœwitlania ile bomb na raz aktualnie posiada gracz w trakcie rozgrywki. Jest wyœwietlana w oknie nieskalowalnego intefeejsu
+ */
 public class BombBar extends JLabel implements Runnable{
 	
 	Dimensions p = new Dimensions();
